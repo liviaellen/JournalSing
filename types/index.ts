@@ -53,7 +53,9 @@ export interface MusicLyrics {
 export interface ScenePrompt {
   id: string
   prompt: string
-  imageUrl?: string
+  startFrameUrl?: string
+  endFrameUrl?: string
+  videoUrl?: string
   startTime: number
   endTime: number
 }

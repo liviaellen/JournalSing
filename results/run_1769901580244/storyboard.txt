@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 10,
+    "prompt": "Cinematic visualization: **  \n  \n Wait, check this out! Pigeons. Not just urban pests. Actual art... (focus on scientific details from lyrics)"
+  },
+  {
+    "id": "2",
+    "startTime": 10,
+    "endTime": 20,
+    "prompt": "Cinematic visualization: **  \n  \n Wait, check this out! Pigeons. Not just urban pests. Actual art... (focus on scientific details from lyrics)"
+  },
+  {
+    "id": "3",
+    "startTime": 20,
+    "endTime": 30,
+    "prompt": "Cinematic visualization: **  \n  \n Wait, check this out! Pigeons. Not just urban pests. Actual art... (focus on scientific details from lyrics)"
+  },
+  {
+    "id": "4",
+    "startTime": 30,
+    "endTime": 40,
+    "prompt": "Cinematic visualization: **  \n  \n Wait, check this out! Pigeons. Not just urban pests. Actual art... (focus on scientific details from lyrics)"
+  },
+  {
+    "id": "5",
+    "startTime": 40,
+    "endTime": 50,
+    "prompt": "Cinematic visualization: **  \n  \n Wait, check this out! Pigeons. Not just urban pests. Actual art... (focus on scientific details from lyrics)"
+  },
+  {
+    "id": "6",
+    "startTime": 50,
+    "endTime": 60,
+    "prompt": "Cinematic visualization: **  \n  \n Wait, check this out! Pigeons. Not just urban pests. Actual art... (focus on scientific details from lyrics)"
+  }
+]

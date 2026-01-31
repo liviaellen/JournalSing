@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 5,
+    "prompt": "Cinematic visualization: Wait, check this out! Pigeons discriminate Monet from Picasso!  Eigh... (focus on scientific details from lyrics)"
+  },
+  {
+    "id": "2",
+    "startTime": 5,
+    "endTime": 10,
+    "prompt": "Cinematic visualization: Wait, check this out! Pigeons discriminate Monet from Picasso!  Eigh... (focus on scientific details from lyrics)"
+  },
+  {
+    "id": "3",
+    "startTime": 10,
+    "endTime": 15,
+    "prompt": "Cinematic visualization: Wait, check this out! Pigeons discriminate Monet from Picasso!  Eigh... (focus on scientific details from lyrics)"
+  },
+  {
+    "id": "4",
+    "startTime": 15,
+    "endTime": 20,
+    "prompt": "Cinematic visualization: Wait, check this out! Pigeons discriminate Monet from Picasso!  Eigh... (focus on scientific details from lyrics)"
+  },
+  {
+    "id": "5",
+    "startTime": 20,
+    "endTime": 25,
+    "prompt": "Cinematic visualization: Wait, check this out! Pigeons discriminate Monet from Picasso!  Eigh... (focus on scientific details from lyrics)"
+  },
+  {
+    "id": "6",
+    "startTime": 25,
+    "endTime": 30,
+    "prompt": "Cinematic visualization: Wait, check this out! Pigeons discriminate Monet from Picasso!  Eigh... (focus on scientific details from lyrics)"
+  }
+]

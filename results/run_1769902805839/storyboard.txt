@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 10,
+    "prompt": "Cartoony tutorial style scene showing: Hey, pigeons could tell Monet and Picasso apart—how about that?. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "2",
+    "startTime": 10,
+    "endTime": 20,
+    "prompt": "Cartoony tutorial style scene showing: Did you know pigeons can grasp concepts from art?   They sorted Monet’s soft light and Picasso’s bold start.. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "3",
+    "startTime": 20,
+    "endTime": 30,
+    "prompt": "Cartoony tutorial style scene showing: A trick of vision, more than just seeing light,   They picked out the patterns with surprising insight.. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "4",
+    "startTime": 30,
+    "endTime": 40,
+    "prompt": "Cartoony tutorial style scene showing: When art meets the bird, who’d think pigeons could know?   The way Monet flows or Picasso’s bold show.. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "5",
+    "startTime": 40,
+    "endTime": 50,
+    "prompt": "Cartoony tutorial style scene showing: Impressionists fall like Monet’s brushstroke in rain,   Cubist ideas in Picasso’s refrain—   Pigeons see patterns, a world of art’s grand plan.. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "6",
+    "startTime": 50,
+    "endTime": 60,
+    "prompt": "Cartoony tutorial style scene showing: So next time you’re in a gallery, don’t pass them by—   Pigeons get art, more than just the sky!. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  }
+]

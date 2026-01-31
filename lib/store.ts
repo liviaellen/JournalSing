@@ -66,6 +66,9 @@ interface JournalSingState {
   runId: string | null
   setRunId: (id: string | null) => void
 
+  // Helpers
+  reSyncScenes: (totalDuration: number) => void
+
   // Reset all state
   reset: () => void
 }
@@ -145,6 +148,20 @@ export const useJournalSingStore = create<JournalSingState>((set) => ({
 
   runId: null,
   setRunId: (runId) => set({ runId }),
+
+  reSyncScenes: (totalDuration) => set((state) => {
+    if (state.scenes.length === 0) return state;
+    const sceneCount = state.scenes.length;
+    const sliceDuration = totalDuration / sceneCount;
+
+    return {
+      scenes: state.scenes.map((scene, index) => ({
+        ...scene,
+        startTime: Number((index * sliceDuration).toFixed(1)),
+        endTime: Number(((index + 1) * sliceDuration).toFixed(1))
+      }))
+    };
+  }),
 
   reset: () => set({
     currentStep: 1,

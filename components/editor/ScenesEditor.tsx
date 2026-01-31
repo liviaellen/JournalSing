@@ -20,20 +20,33 @@ export function ScenesEditor() {
   const { toast } = useToast()
 
   const handleRegenerate = async () => {
-    if (!lyrics?.text || isGenerating) return
+    if (!lyrics?.text || !videoDuration) return
     setIsRegenerating(true)
     setIsGenerating(true)
     try {
-      const newScenes = await generateScenes(lyrics.text, videoDuration)
-      setScenes(newScenes)
-      toast({
-        title: 'Scenes regenerated',
-        description: 'New visual storyboard created.',
+      const response = await fetch('/api/regenerate-scenes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          lyrics: lyrics.text,
+          duration: videoDuration
+        })
       })
-    } catch (error) {
+
+      if (!response.ok) throw new Error('Failed to regenerate scenes')
+
+      const data = await response.json()
+      setScenes(data.scenes)
+
+      toast({
+        title: 'Scenes regenerated!',
+        description: `Generated ${data.scenes.length} detailed scenes based on your lyrics.`,
+      })
+    } catch (error: any) {
+      console.error('Scene regeneration error:', error)
       toast({
         title: 'Regeneration failed',
-        description: 'Could not generate new scenes.',
+        description: error.message || 'Failed to regenerate scenes',
         variant: 'destructive',
       })
     } finally {

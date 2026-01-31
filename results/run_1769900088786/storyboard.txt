@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 5,
+    "prompt": "Pigeon looking at Monet painting"
+  },
+  {
+    "id": "2",
+    "startTime": 5,
+    "endTime": 10,
+    "prompt": "Pigeon with paintbrush in beak, surveying canvas"
+  },
+  {
+    "id": "3",
+    "startTime": 10,
+    "endTime": 15,
+    "prompt": "Pigeons flying through art gallery"
+  },
+  {
+    "id": "4",
+    "startTime": 15,
+    "endTime": 20,
+    "prompt": "Pigeons in a box, performing a test"
+  },
+  {
+    "id": "5",
+    "startTime": 20,
+    "endTime": 25,
+    "prompt": "Abstract painting on a wall"
+  },
+  {
+    "id": "6",
+    "startTime": 25,
+    "endTime": 30,
+    "prompt": "Pigeons flying out of box"
+  }
+]

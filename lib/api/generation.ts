@@ -73,6 +73,8 @@ export async function generateLyrics(
 
   WORD BUDGET:
   - Target ${duration === 30 ? '45-55' : duration === 60 ? '100-120' : '150-170'} words total.
+  - STRICT: This is an absolute ceiling. Do NOT exceed these word counts.
+  - PACING: Ensure the story fits comfortably within ${duration} seconds without feeling rushed or overly long.
   - BEYOND THIS BUDGET: Prioritize "NO REPETITION" over hitting the word count.
 
   Output ONLY the formatted lyrics.`
@@ -100,7 +102,7 @@ export async function generateScenes(lyricsText: string, duration: number = 60):
   const segment = Math.floor(duration / numScenes);
 
   const systemPrompt = `You are a cinematic storyboard designer.
-  Your goal is to create EXACTLY ${numScenes} visual scenes that illustrate the story of the song.
+  Your goal is to create EXACTLY ${numScenes} HIGHLY DETAILED visual scenes that illustrate the story of the song.
 
   SONG CONTENT:
   ${lyricsText}
@@ -109,12 +111,24 @@ export async function generateScenes(lyricsText: string, duration: number = 60):
 
   STRICT RULES:
   1. TIMING: Provide exactly ${numScenes} segments. Each segment should be exactly ${segment} seconds long.
-  2. CONTENT: Base each "prompt" strictly on the specific scientific steps, results, or analogies mentioned in the lyrics at that time.
-  3. NO TEXT: No spoken lyrics or on-screen text. ONLY visual descriptions.
-  4. FORMAT: Output exactly 6 lines in this EXACT format:
-     [START_SEC-END_SEC]: Detailed visual description
+  2. CONTENT: Base each "prompt" strictly on the specific story, actions, or concepts mentioned in the lyrics at that time. If the lyrics are about pigeons and art, show pigeons looking at paintings. If about science, show experiments. Match the lyrics EXACTLY.
+  3. DETAIL LEVEL: Each scene description must be 3-4 sentences with:
+     - Specific character actions and expressions
+     - Lighting and atmosphere (e.g., "warm golden hour light", "soft studio lighting")
+     - Camera angle (e.g., "close-up", "wide shot", "over-the-shoulder")
+     - Environment details (e.g., "art gallery with paintings", "modern laboratory", "outdoor park")
+  4. STYLE: Cartoony tutorial kids vibes, bright colors, friendly characters, simple backgrounds.
+  5. NO TEXT: No spoken lyrics or on-screen text. ONLY visual descriptions.
+  6. FORMAT: Output exactly 6 lines in this EXACT format:
+     [START_SEC-END_SEC]: Detailed 3-4 sentence visual description
 
-  Output ONLY the formatted scene lines. BASE THEM ON THE LYRICS.`;
+  EXAMPLE FOR PIGEON ART LYRICS:
+  [0-10]: A cheerful cartoon pigeon with bright eyes stands in a colorful art gallery, tilting its head curiously at a large Monet painting of water lilies hanging on the wall. Soft museum lighting illuminates the scene. The pigeon's feathers are vibrant purple and green, and it looks genuinely impressed. Wide shot showing the gallery with multiple paintings in the background.
+
+  EXAMPLE FOR SCIENCE LYRICS:
+  [0-10]: A cheerful cartoon scientist with big round glasses stands in a bright, colorful laboratory filled with bubbling test tubes and a chalkboard covered in simple diagrams. She holds up a magnifying glass with excitement. Soft, even lighting fills the room. Wide shot showing the entire friendly lab setup.
+
+  Output ONLY the formatted scene lines. BASE THEM ON THE ACTUAL LYRICS CONTENT.`;
 
   const responseText = await callLLM(lyricsText, systemPrompt);
 
@@ -137,16 +151,30 @@ export async function generateScenes(lyricsText: string, duration: number = 60):
   });
 
   if (scenes.length < 2) {
+    console.warn('Scene parsing failed, using enhanced fallback. Raw response:', responseText);
     const fallback: ScenePrompt[] = [];
-    const lyricSnippet = lyricsText.slice(0, 100).replace(/\[.*?\]/g, '').trim();
+
+    // Extract key themes from lyrics
+    const lyricLines = lyricsText.split('\n').filter(l => l.trim() && !l.match(/^\[.*\]$/));
+    const lyricChunks = [];
+    const chunkSize = Math.ceil(lyricLines.length / numScenes);
+
+    for (let i = 0; i < numScenes; i++) {
+      const start = i * chunkSize;
+      const end = Math.min((i + 1) * chunkSize, lyricLines.length);
+      lyricChunks.push(lyricLines.slice(start, end).join(' ').replace(/\[.*?\]/g, '').trim());
+    }
+
     for (let i = 0; i < numScenes; i++) {
       const start = i * segment;
       const end = (i === numScenes - 1) ? duration : (i + 1) * segment;
+      const chunk = lyricChunks[i] || lyricsText.slice(0, 100);
+
       fallback.push({
         id: (i + 1).toString(),
         startTime: start,
         endTime: end,
-        prompt: `Cinematic visualization: ${lyricSnippet}... (focus on scientific details from lyrics)`
+        prompt: `Cartoony tutorial style scene showing: ${chunk.slice(0, 200)}. Bright colors, friendly characters, simple background. Wide shot with good lighting.`
       });
     }
     return fallback;
@@ -198,7 +226,13 @@ STRICT RULES:
    - DO NOT hallucinate [End] tags.
 2. SCENES:
    - Provide EXACTLY ${numScenes} UNIQUE scenes.
-   - Scene prompts must be PHYSICAL and CINEMATIC based on the lyrics for that time.
+   - Each scene prompt must be 3-4 DETAILED sentences including:
+     * Specific character actions and expressions (e.g., "pigeon tilts head curiously", "scientist holds up beaker excitedly")
+     * Lighting and atmosphere (e.g., "soft museum lighting", "bright laboratory glow")
+     * Camera angle (e.g., "close-up of face", "wide shot of room")
+     * Environment details (e.g., "art gallery with Monet paintings", "colorful lab with test tubes")
+   - Match the ACTUAL content of the lyrics. If about pigeons and art, show pigeons in galleries. If about science, show experiments.
+   - Style: Cartoony tutorial kids vibes, bright colors, friendly characters, simple backgrounds.
 3. FORMAT: Output ONLY JSON. No banter.`
 
   const responseText = await callLLM(text, systemPrompt)

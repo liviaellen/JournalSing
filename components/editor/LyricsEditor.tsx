@@ -14,7 +14,7 @@ export function LyricsEditor() {
   const {
     editedText, lyrics, setLyrics, videoDuration,
     musicPreview, setMusicPreview, setProgress, runId,
-    isGenerating, setIsGenerating
+    isGenerating, setIsGenerating, reSyncScenes
   } = useJournalSingStore()
   const [isRegenerating, setIsRegenerating] = useState(false)
   const [isMusicGenerating, setIsMusicGenerating] = useState(false)
@@ -85,6 +85,9 @@ export function LyricsEditor() {
         duration: musicData.duration,
         type: 'music'
       })
+
+      // Sync scenes with actual music duration
+      reSyncScenes(musicData.duration)
 
       // Save music locally in run folder
       if (runId) {
