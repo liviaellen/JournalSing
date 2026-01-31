@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 10,
+    "prompt": "Cinematic visual of plants releasing chemicals into the air, with other plants receiving the signal."
+  },
+  {
+    "id": "2",
+    "startTime": 10,
+    "endTime": 20,
+    "prompt": "Scene showing plants underground, their roots intertwined, sharing resources and warnings through a fungal network."
+  },
+  {
+    "id": "3",
+    "startTime": 20,
+    "endTime": 30,
+    "prompt": "Visual of a garden with plants communicating, showing the secret life of plants and their unique language."
+  },
+  {
+    "id": "4",
+    "startTime": 30,
+    "endTime": 40,
+    "prompt": "Scene of a field of green, with plants thriving and communicating, a remarkable phenomenon on display."
+  },
+  {
+    "id": "5",
+    "startTime": 40,
+    "endTime": 50,
+    "prompt": "Visual of a scientist studying plant communication, revealing the secrets of the botanical world."
+  },
+  {
+    "id": "6",
+    "startTime": 50,
+    "endTime": 60,
+    "prompt": "Scene of a person looking at a plant, realizing the language of plants and the secrets they hold."
+  }
+]

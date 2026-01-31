@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 10,
+    "prompt": "Cinematic visualization of research segment 1: focus on scientific methodology and results."
+  },
+  {
+    "id": "2",
+    "startTime": 10,
+    "endTime": 20,
+    "prompt": "Cinematic visualization of research segment 2: focus on scientific methodology and results."
+  },
+  {
+    "id": "3",
+    "startTime": 20,
+    "endTime": 30,
+    "prompt": "Cinematic visualization of research segment 3: focus on scientific methodology and results."
+  },
+  {
+    "id": "4",
+    "startTime": 30,
+    "endTime": 40,
+    "prompt": "Cinematic visualization of research segment 4: focus on scientific methodology and results."
+  },
+  {
+    "id": "5",
+    "startTime": 40,
+    "endTime": 50,
+    "prompt": "Cinematic visualization of research segment 5: focus on scientific methodology and results."
+  },
+  {
+    "id": "6",
+    "startTime": 50,
+    "endTime": 60,
+    "prompt": "Cinematic visualization of research segment 6: focus on scientific methodology and results."
+  }
+]

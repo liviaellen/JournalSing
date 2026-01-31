@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "startTime": 10,
+    "endTime": 20,
+    "prompt": "A pigeon pecks at a screen displaying Monet's Water Lilies, a thought bubble浮现 above its head with a distorted recreation of the painting."
+  },
+  {
+    "id": "2",
+    "startTime": 20,
+    "endTime": 30,
+    "prompt": "The pigeon tilts its head, beak poised over a hidden reward chute as Picasso's Les Demoiselles d'Avignon flashes on screen."
+  },
+  {
+    "id": "3",
+    "startTime": 30,
+    "endTime": 40,
+    "prompt": "A close-up of the bird’s eye blinking, followed by a grid of 20 paintings (Impressionism to Cubism) where the pigeon deliberately pecks at 15 Cubist artworks."
+  },
+  {
+    "id": "4",
+    "startTime": 40,
+    "endTime": 50,
+    "prompt": "Reversal twist-a mirrored Picasso appears, triggering confused head tilts and frantic pecking at an incorrect grid before the brain resets with a second correct response."
+  },
+  {
+    "id": "5",
+    "startTime": 50,
+    "endTime": 60,
+    "prompt": "Slow-motion wings spread as the pigeon holds a paintbrush in its beak, transitioning into an animation of avian neurons syncing with color wheels and art frames."
+  }
+]

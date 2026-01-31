@@ -1,0 +1,275 @@
+import { MusicLyrics, ScenePrompt } from '@/types'
+
+/**
+ * Aligning with claude.md flow using real MiniMax LLM integration.
+ */
+
+// Helper to call our internal LLM API
+async function callLLM(prompt: string, systemPrompt: string): Promise<string> {
+  const response = await fetch('/api/generate-text', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt, systemPrompt })
+  });
+
+  if (!response.ok) {
+    throw new Error('LLM generation failed');
+  }
+
+  const data = await response.json();
+  return data.text;
+}
+
+// 1. Concept Condensation
+export async function condenseConcept(paperText: string): Promise<string> {
+  console.log('Condensing concepts via LLM...');
+  const systemPrompt = `You are a specialized scientific journalist.
+Your task is to extract the ABSOLUTE ESSENCE of the following academic paper.
+
+STRICT RULES:
+1. TOPIC GROUNDING: Stay 100% strictly focused on the provided text. If the paper is about pigeons, DO NOT mention plants or unrelated topics.
+2. NO GENERIC FACTS: Do not provide general science knowledge. Use ONLY what is in the text.
+3. INSUFFICIENT DATA: If the text is empty or nonsensical, respond with "Error: The document text could not be extracted properly."
+4. KEY ELEMENTS: Focus on the 'Aha!' moment, methodology, and primary result.
+5. CONCISENESS: Keep it under 150 words. No banter. No conversational filler.`;
+  return callLLM(paperText.slice(0, 15000), systemPrompt);
+}
+
+// 2. Timed Lyric Generation (ELI5 / 5th-Grader Style)
+export async function generateLyrics(
+  text: string,
+  duration: number = 60
+): Promise<MusicLyrics> {
+  console.log(`Generating catchy ELI5 song for ${duration}s...`)
+
+  const systemPrompt = `You are an "Engaging Science Communicator" like a TikTok science host.
+  Your goal is to narrate this research as a "Mind-Blowing Fun Fact" story.
+
+  STYLE:
+  - CONVERSATIONAL: Speak like a real person. Avoid "artsy" or "abstract" language.
+  - STORYTELLING: Tell a linear story: The Hook -> The Experiment -> The Result -> Why it matters.
+  - NO FORCED RHYMES: Natural flow is better than bad rhymes.
+  - SPECIFIC: Use ONLY the actual scientific details from the provided text.
+
+  CRITICAL - NO TOPIC SHIFT:
+  Stay strictly on topic. Do not hallucinate or use external science facts. If the research is about pigeons, stay on pigeons. Do not talk about plants or other unrelated topics.
+
+  CRITICAL - NO REPETITION:
+  - DO NOT REPEAT VERSES OR CHORUSES.
+  - Every line must contribute new information.
+  - Do not loop back to the beginning of the song.
+  - If the story is told, STOP. Do not pad the length by repeating previous sections.
+
+  HOOK: Always start with "Wait, check this out!" or "Did you know [specific fact]?"
+
+  MUSIC API REQUIREMENTS (STRICT):
+  1. Use these structural tags ONLY: [Intro], [Verse], [Pre Chorus], [Chorus], [Interlude], [Bridge], [Outro], [Post Chorus], [Transition], [Break], [Hook], [Build Up], [Inst], [Solo].
+  2. Each tag MUST be on its own line.
+  3. Include UNIQUE sections ONLY.
+
+  STRICT TIMESTAMP RULES:
+  - OPENING: Always start with [Timestamp 0:00].
+  - DO NOT output ANY content after the final unique lyric line.
+
+  WORD BUDGET:
+  - Target ${duration === 30 ? '45-55' : duration === 60 ? '100-120' : '150-170'} words total.
+  - BEYOND THIS BUDGET: Prioritize "NO REPETITION" over hitting the word count.
+
+  Output ONLY the formatted lyrics.`
+
+  const responseText = await callLLM(text, systemPrompt)
+
+  // Post-processing to remove repeated hallucinations like [End]
+  const cleanText = responseText
+    .split('\n')
+    .filter(line => !/\[End/i.test(line)) // Remove any lines containing [End]
+    .join('\n')
+    .trim()
+
+  return {
+    text: cleanText,
+    structure: cleanText.match(/\[(.*?)\]/g)?.join(', ') || 'Verse-Chorus'
+  }
+}
+
+// 3. Timestamped Scene Storyboard (Synced with Song Structure)
+export async function generateScenes(lyricsText: string, duration: number = 60): Promise<ScenePrompt[]> {
+  console.log(`Generating snappy 6-scene storyboard for ${duration}s...`);
+
+  const numScenes = 6;
+  const segment = Math.floor(duration / numScenes);
+
+  const systemPrompt = `You are a cinematic storyboard designer.
+  Your goal is to create EXACTLY ${numScenes} visual scenes that illustrate the story of the song.
+
+  SONG CONTENT:
+  ${lyricsText}
+
+  VIDEO DURATION: ${duration} seconds.
+
+  STRICT RULES:
+  1. TIMING: Provide exactly ${numScenes} segments. Each segment should be exactly ${segment} seconds long.
+  2. CONTENT: Base each "prompt" strictly on the specific scientific steps, results, or analogies mentioned in the lyrics at that time.
+  3. NO TEXT: No spoken lyrics or on-screen text. ONLY visual descriptions.
+  4. FORMAT: Output exactly 6 lines in this EXACT format:
+     [START_SEC-END_SEC]: Detailed visual description
+
+  Output ONLY the formatted scene lines. BASE THEM ON THE LYRICS.`;
+
+  const responseText = await callLLM(lyricsText, systemPrompt);
+
+  const scenes: ScenePrompt[] = [];
+  const lines = responseText.split('\n').filter(l => l.includes('[') && (l.includes('-') || l.includes(':')));
+
+  lines.forEach((line) => {
+    // Flexible regex: handles [0-10], [0:00 - 0:10], [ 0 - 10 ] : Description
+    const timeMatch = line.match(/\[\s*(\d+)(?::(\d+))?\s*[-\s:]+\s*(\d+)(?::(\d+))?\s*\]\s*:?\s*(.*)/);
+    if (timeMatch) {
+      let startTime = parseInt(timeMatch[1]);
+      let endTime = parseInt(timeMatch[3]);
+      if (timeMatch[2] !== undefined) startTime = startTime * 60 + parseInt(timeMatch[2]);
+      if (timeMatch[4] !== undefined) endTime = endTime * 60 + parseInt(timeMatch[4]);
+      const prompt = timeMatch[5].trim();
+      if (prompt && prompt.length > 5) {
+        scenes.push({ id: (scenes.length + 1).toString(), startTime, endTime, prompt });
+      }
+    }
+  });
+
+  if (scenes.length < 2) {
+    const fallback: ScenePrompt[] = [];
+    const lyricSnippet = lyricsText.slice(0, 100).replace(/\[.*?\]/g, '').trim();
+    for (let i = 0; i < numScenes; i++) {
+      const start = i * segment;
+      const end = (i === numScenes - 1) ? duration : (i + 1) * segment;
+      fallback.push({
+        id: (i + 1).toString(),
+        startTime: start,
+        endTime: end,
+        prompt: `Cinematic visualization: ${lyricSnippet}... (focus on scientific details from lyrics)`
+      });
+    }
+    return fallback;
+  }
+
+  if (scenes.length > 0) { scenes[scenes.length - 1].endTime = duration; }
+  return scenes.slice(0, numScenes);
+}
+
+// 4. Consolidated Generation (JSON Based for robustness)
+export async function generateFullContent(
+  text: string,
+  duration: number = 60
+): Promise<{ lyrics: MusicLyrics; scenes: ScenePrompt[] }> {
+  console.log(`Generating full content (Lyrics + 6 Scenes) for ${duration}s...`)
+
+  const numScenes = 6
+  const segmentDuration = Math.floor(duration / numScenes)
+
+  const systemPrompt = `You are an "Engaging Science Communicator" like a TikTok host.
+Goal: Transform this research into a CONVERSATIONAL story with a hook and a 6-scene storyboard.
+
+STYLE:
+- Conversational: Speak naturally, like a person telling a story. No "artsy" or abstract rhymes.
+- Story-driven: Hook -> Experiment -> Results -> Significance.
+- SPECIFIC: Use ONLY actual scientific terms and data from the provided text.
+- NO REPETITION: Every lyric line and scene must be unique. DO NOT REPEAT sections, verses, or choruses. Once the story is told, stop.
+- NO TOPIC SHIFT: If text is about pigeons, stay on pigeons. Do not talk about unrelated topics.
+
+HOOK EXAMPLE: "Wait, check this out! Did you know [specific fact from research]?"
+
+OUTPUT FORMAT:
+You MUST output ONLY a valid JSON object with this structure:
+{
+  "lyrics": "[Timestamp 0:00]\\n[Intro]\\n(Catchy conversational hook...)\\n\\n[Timestamp 0:15]\\n[Verse]\\n(Specific scientific details...)",
+  "scenes": [
+    { "startTime": 0, "endTime": ${segmentDuration}, "prompt": "Cinematic visual showing [specific physical action from lyrics]" },
+    ...
+  ]
+}
+
+STRICT RULES:
+1. LYRICS:
+   - Always start with "Wait, check this out!" or "Did you know?".
+   - Target ${duration === 30 ? '45-55' : duration === 60 ? '100-120' : '150-170'} words total.
+   - NO DUPLICATES. Do not repeat the same verse or chorus twice.
+   - Use tags: [Intro], [Verse], [Chorus], [Outro], etc.
+   - Put [Timestamp M:SS] ONLY at the start of sections.
+   - DO NOT hallucinate [End] tags.
+2. SCENES:
+   - Provide EXACTLY ${numScenes} UNIQUE scenes.
+   - Scene prompts must be PHYSICAL and CINEMATIC based on the lyrics for that time.
+3. FORMAT: Output ONLY JSON. No banter.`
+
+  const responseText = await callLLM(text, systemPrompt)
+
+  try {
+    // Robust JSON extraction: find first '{' and last '}'
+    const firstBrace = responseText.indexOf('{')
+    const lastBrace = responseText.lastIndexOf('}')
+    if (firstBrace === -1 || lastBrace === -1) throw new Error('No JSON braces found')
+
+    const jsonStr = responseText.slice(firstBrace, lastBrace + 1)
+    const result = JSON.parse(jsonStr)
+
+    // Clean lyrics for hallucinations
+    const cleanLyrics = (result.lyrics || '')
+      .split('\n')
+      .filter((line: string) => !line.includes('[End]'))
+      .join('\n')
+      .trim()
+
+    // Safety check: MiniMax max length is 3500 characters
+    // We slice to 3400 to leave room for structural tags
+    const safeLyrics = cleanLyrics.length > 3400 ? cleanLyrics.slice(0, 3400) : cleanLyrics
+    const formattedLyrics = safeLyrics.includes('[') ? safeLyrics : `[Verse]\n${safeLyrics}`
+
+    // Ensure 6 scenes and correct timing
+    const validatedScenes = (result.scenes || []).map((s: any, i: number) => ({
+      id: (i + 1).toString(),
+      startTime: s.startTime ?? (i * segmentDuration),
+      endTime: (i === numScenes - 1) ? duration : (s.endTime || (i + 1) * segmentDuration),
+      prompt: s.prompt || `Cinematic visual for: ${cleanLyrics.slice(0, 50)}...`
+    }))
+
+    // Ensure we have scenes
+    if (validatedScenes.length < 2) throw new Error('Incomplete scenes array')
+
+    return {
+      lyrics: {
+        text: cleanLyrics,
+        structure: cleanLyrics.match(/\[(.*?)\]/g)?.join(', ') || 'Verse-Chorus'
+      },
+      scenes: validatedScenes.slice(0, numScenes)
+    }
+  } catch (e) {
+    console.error('JSON Parse failed, falling back to sequential generation:', e)
+    // Fallback: Use the generated lyrics to create specific scenes
+    const lyricsData = await generateLyrics(text, duration)
+    const scenesData = await generateScenes(lyricsData.text, duration)
+    return { lyrics: lyricsData, scenes: scenesData }
+  }
+}
+
+export async function pollTaskStatus(taskId: string): Promise<any> {
+  const maxRetries = 120;
+  let retries = 0;
+
+  while (retries < maxRetries) {
+    const response = await fetch(`/api/generate-video?taskId=${taskId}`);
+    const data = await response.json();
+
+    if (data.status === 'completed') {
+      return data;
+    }
+
+    if (data.status === 'failed') {
+      throw new Error(data.error || 'Video task failed');
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    retries++;
+  }
+
+  throw new Error('Video generation timed out');
+}

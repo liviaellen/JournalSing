@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 15,
+    "prompt": "A close-up of a pigeon pecking at a screen showing a Monet painting."
+  },
+  {
+    "id": "2",
+    "startTime": 15,
+    "endTime": 30,
+    "prompt": "A split-screen of two paintings: a Monet and a Picasso. Pigeons pecking at the Monet."
+  },
+  {
+    "id": "3",
+    "startTime": 30,
+    "endTime": 40,
+    "prompt": "A pigeon looking at a screen, pecking in response to a Monet painting. A graph showing a 40% pecking accuracy appears on the screen."
+  },
+  {
+    "id": "4",
+    "startTime": 40,
+    "endTime": 50,
+    "prompt": "A series of paintings by different artists, including Matisse, appears. A pigeon pecks at a Matisse painting."
+  },
+  {
+    "id": "5",
+    "startTime": 50,
+    "endTime": 60,
+    "prompt": "A split-screen of a Monet painting and a Picasso painting appears. A pigeon pecks at the Monet painting."
+  },
+  {
+    "id": "6",
+    "startTime": 60,
+    "endTime": 60,
+    "prompt": "A pigeon pecks at a painting on a screen, and a new painting appears. The pigeon pecks at the new painting."
+  }
+]
