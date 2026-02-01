@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 10,
+    "prompt": "A cheerful cartoon pigeon with bright eyes stands in a bright, modern laboratory, tilting its head curiously at a computer screen displaying the numbers 1, 2, and 3. Soft lab lighting illuminates the scene. The pigeon's feathers are vibrant purple and green, and it looks genuinely interested. Close-up on the pigeon and the screen, showing concentration."
+  },
+  {
+    "id": "2",
+    "startTime": 10,
+    "endTime": 20,
+    "prompt": "The pigeon taps the middle number \"2\" with its beak, and a green checkmark flashes on the screen. The scientific team, represented by a friendly scientist in a lab coat with a big smile, watches the screen in amazement. The lab is filled with colorful test tubes and a large chalkboard with simple equations. Medium shot capturing the pigeon and the scientist's positive reaction."
+  },
+  {
+    "id": "3",
+    "startTime": 20,
+    "endTime": 30,
+    "prompt": "The pigeon is now pecking at the screen again, its feathers glowing under the bright lab lights. The scientist writes on the chalkboard, noting the 70% accuracy. The pigeon’s gaze shifts from the screen to the scientist, as if awaiting further instructions. Close-up on the pigeon’s focused expression and the chalkboard."
+  },
+  {
+    "id": "4",
+    "startTime": 30,
+    "endTime": 40,
+    "prompt": "The pigeon taps the screen again, and this time a blue light flashes, indicating the pigeon is correct. The scientist grins and points to the board, which now reads \"Accuracy: 70%.\" The pigeon looks up at the scientist, its expression proud. Close-up on the pigeon’s face, showing determination."
+  },
+  {
+    "id": "5",
+    "startTime": 40,
+    "endTime": 50,
+    "prompt": "The pigeon pecks at the screen once more, and the scientist writes \"100%\" on the board. The pigeon looks at the scientist with a confident grin, its feathers gleaming in the light. The lab is filled with a festive atmosphere, with colorful balloons and a banner that reads \"Pigeon Math Champions!\" Wide shot of the lab, celebrating the pigeon’s success."
+  },
+  {
+    "id": "6",
+    "startTime": 50,
+    "endTime": 60,
+    "prompt": "The pigeon is now sitting on a bench in a city park, watching people walk by. A child stops to admire the pigeon, and the pigeon looks back with a knowing glance, as if to say \"I'm smart, aren't I?\" The park is filled with trees and flowers, and the sunlight creates a warm, inviting atmosphere. Close-up on the pigeon, its eyes twinkling with wisdom."
+  }
+]

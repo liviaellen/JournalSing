@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 6,
+    "prompt": "A bright-eyed cartoon pigeon with purple and green feathers tilts its head in a modern art gallery, staring intently at a large Monet \"Water Lilies\" painting on the wall. Soft gallery lighting creates gentle highlights on the artwork. Close-up shot of the pigeon's curious expression as it studies the brushstrokes. *Sound cue: soft museum ambiance*"
+  },
+  {
+    "id": "2",
+    "startTime": 7,
+    "endTime": 13,
+    "prompt": "The same pigeon pecks excitedly at a digital screen showing a fake Monet, then looks confused and shakes its head. The pigeon flaps its wings in protest. Digital screen displays a flashing \"X\" symbol to indicate rejection. Overhead camera angle showing the pigeon and screen. *Sound cue: digital alert*"
+  },
+  {
+    "id": "3",
+    "startTime": 14,
+    "endTime": 20,
+    "prompt": "The pigeon moves to another screen displaying an authentic Monet, pecks approvingly, and a star symbol appears on the screen. The pigeon then puffs up its chest with pride. Digital screen now shows a star symbol. Close-up of the digital screen with the star symbol. *Sound cue: positive chime*"
+  },
+  {
+    "id": "4",
+    "startTime": 21,
+    "endTime": 27,
+    "prompt": "The pigeon turns and sees a Picasso painting, looks confused, and pecks at it uncertainly. The pigeon squawks in frustration. Close-up shot of the pigeon pecking the screen, then backing away with ruffled feathers. *Sound cue: scratching peck*"
+  },
+  {
+    "id": "5",
+    "startTime": 28,
+    "endTime": 34,
+    "prompt": "The pigeon looks over at a friendly scientist with big round glasses, who is observing the experiment. The scientist smiles encouragingly. Close-up shot of the scientist's encouraging smile. *Sound cue: gentle hum of lab equipment*"
+  }
+]

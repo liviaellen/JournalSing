@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, Sparkles } from 'lucide-react'
@@ -14,6 +14,7 @@ import { MusicStylePicker } from '@/components/music/MusicStylePicker'
 import { VideoPreview } from '@/components/video/VideoPreview'
 import { LyricsEditor } from '@/components/editor/LyricsEditor'
 import { ScenesEditor } from '@/components/editor/ScenesEditor'
+import { RunHistorySidebar } from '@/components/history/RunHistorySidebar'
 import { useJournalSingStore } from '@/lib/store'
 
 const steps = [
@@ -23,7 +24,18 @@ const steps = [
 ]
 
 export default function CreatePage() {
-  const { currentStep, setCurrentStep, document, lyrics, scenes, progress } = useJournalSingStore()
+  const { currentStep, setCurrentStep, document, lyrics, scenes, progress, musicPreview } = useJournalSingStore()
+
+  // Auto-navigate to appropriate step when loading a run
+  useEffect(() => {
+    if (lyrics && currentStep === 1) {
+      // If we have lyrics but we're on step 1, skip to step 2
+      setCurrentStep(2)
+    } else if (musicPreview && scenes.length > 0 && currentStep < 3) {
+      // If we have music and scenes, go to step 3
+      setCurrentStep(3)
+    }
+  }, [lyrics, musicPreview, scenes, currentStep, setCurrentStep])
 
   const canProceed = () => {
     switch (currentStep) {
@@ -34,15 +46,15 @@ export default function CreatePage() {
     }
   }
 
-  const handleNext = () => {
-    if (currentStep < 3 && canProceed()) {
-      setCurrentStep(currentStep + 1)
-    }
-  }
-
   const handleBack = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1)
+    }
+  }
+
+  const handleNext = () => {
+    if (canProceed() && currentStep < 3) {
+      setCurrentStep(currentStep + 1)
     }
   }
 
@@ -66,66 +78,70 @@ export default function CreatePage() {
   }
 
   return (
-    <main className="min-h-screen relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 gradient-bg opacity-5" />
-      <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
-
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       {/* Header */}
-      <header className="relative z-10 flex items-center justify-between p-6 max-w-7xl mx-auto">
-        <div className="flex items-center gap-4">
+      <header className="border-b bg-background/80 backdrop-blur-sm sticky top-0 z-50">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/">
-            <Button variant="ghost" size="icon">
-              <ArrowLeft className="w-5 h-5" />
+            <Button variant="ghost" size="sm">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back
             </Button>
           </Link>
           <div className="flex items-center gap-2">
-            <Sparkles className="w-6 h-6 text-primary" />
-            <span className="text-lg font-bold">JournalSing</span>
+            <Sparkles className="w-5 h-5 text-primary" />
+            <h1 className="text-xl font-bold">Create ELI5 Video</h1>
           </div>
+          <ThemeToggle />
         </div>
-        <ThemeToggle />
       </header>
 
-      {/* Step Indicator */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 py-8">
-        <StepIndicator steps={steps} currentStep={currentStep} />
-      </div>
+      {/* Main Content with Sidebar */}
+      <div className="flex h-[calc(100vh-73px)]">
+        {/* Left Sidebar - Run History */}
+        <div className="w-64 border-r bg-background/50 backdrop-blur-sm">
+          <RunHistorySidebar />
+        </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 pb-32">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentStep}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            {renderStepContent()}
-          </motion.div>
-        </AnimatePresence>
+        {/* Main Content Area */}
+        <div className="flex-1 overflow-auto">
+          <div className="container mx-auto px-4 py-8 max-w-5xl">
+            {/* Step Indicator */}
+            <StepIndicator steps={steps} currentStep={currentStep} />
 
-        {/* Navigation */}
-        <div className="flex items-center justify-between mt-8">
-          <Button
-            variant="outline"
-            onClick={handleBack}
-            disabled={currentStep === 1}
-          >
-            Back
-          </Button>
-          {currentStep < 5 ? (
-            <Button
-              onClick={handleNext}
-              disabled={!canProceed()}
+            {/* Step Content */}
+            <motion.div
+              key={currentStep}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="mt-8"
             >
-              Continue
-            </Button>
-          ) : null}
+              {renderStepContent()}
+            </motion.div>
+
+            {/* Navigation */}
+            <div className="mt-8 flex justify-between">
+              <Button
+                variant="outline"
+                onClick={handleBack}
+                disabled={currentStep === 1}
+              >
+                Back
+              </Button>
+              {currentStep < 3 && (
+                <Button
+                  onClick={handleNext}
+                  disabled={!canProceed() || (currentStep === 2 && progress.step !== 'idle' && progress.step !== 'complete')}
+                >
+                  Next
+                </Button>
+              )}
+            </div>
+          </div>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

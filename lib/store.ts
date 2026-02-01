@@ -97,7 +97,19 @@ export const useJournalSingStore = create<JournalSingState>((set) => ({
   setCurrentStep: (step) => set({ currentStep: step }),
 
   document: null,
-  setDocument: (doc) => set({ document: doc, editedText: doc?.text || '' }),
+  setDocument: (doc) => set({
+    document: doc,
+    editedText: doc?.text || '',
+    // Clear derived state to prevent stale data ("pigen" issue)
+    condensedText: '',
+    lyrics: null,
+    scenes: [],
+    musicPreview: null,
+    speechPreview: null,
+    videoResult: null,
+    imageToImage: {},
+    progress: initialProgress
+  }),
 
   editedText: '',
   setEditedText: (editedText) => set({ editedText }),
@@ -172,15 +184,16 @@ export const useJournalSingStore = create<JournalSingState>((set) => ({
     voiceSettings: initialVoiceSettings,
     musicStyle: initialMusicStyle,
     progress: initialProgress,
+    lyrics: null,
+    scenes: [],
     speechPreview: null,
     musicPreview: null,
     videoResult: null,
-    lyrics: null,
-    scenes: [],
-    imageToImage: {},
-    runId: null,
     isGenerating: false,
+    imageToImage: {},
+    runId: null
   }),
+
   isGenerating: false,
   setIsGenerating: (isGenerating) => set({ isGenerating }),
 }))

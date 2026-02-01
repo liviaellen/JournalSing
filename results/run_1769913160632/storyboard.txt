@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 6,
+    "prompt": "Cartoony tutorial style scene showing: (adjusts lab coat with a dramatic flair, eyes sparkling with geeky excitement) Okay, forget pigeons for a second-did you know your phone’s face recognition uses a brain-inspired trick called backpropa. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "2",
+    "startTime": 6,
+    "endTime": 12,
+    "prompt": "Cartoony tutorial style scene showing: (adjusts lab coat with a dramatic flair, eyes sparkling with geeky excitement) Okay, forget pigeons . Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "3",
+    "startTime": 12,
+    "endTime": 18,
+    "prompt": "Cartoony tutorial style scene showing: (adjusts lab coat with a dramatic flair, eyes sparkling with geeky excitement) Okay, forget pigeons . Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "4",
+    "startTime": 18,
+    "endTime": 24,
+    "prompt": "Cartoony tutorial style scene showing: (adjusts lab coat with a dramatic flair, eyes sparkling with geeky excitement) Okay, forget pigeons . Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "5",
+    "startTime": 24,
+    "endTime": 30,
+    "prompt": "Cartoony tutorial style scene showing: (adjusts lab coat with a dramatic flair, eyes sparkling with geeky excitement) Okay, forget pigeons . Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  }
+]

@@ -182,44 +182,154 @@ export function VideoPreview() {
 
         const sceneDuration = Math.round(scene.endTime - scene.startTime)
 
-        // Generate video for this scene
-        const videoResponse = await fetch('/api/generate-scene-video', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            firstFrameImage: scene.startFrameUrl,
-            lastFrameImage: scene.endFrameUrl,
-            prompt: scene.prompt,
-            duration: sceneDuration <= 10 ? sceneDuration : 6
-          })
-        })
+        // Determine video duration and resolution
+        // 10s scenes → 10s video @ 768P
+        // 6s scenes → 6s video @ 1080P
+        let videoDuration: 6 | 10;
+        let resolution: '768P' | '1080P';
 
-        if (!videoResponse.ok) throw new Error(`Failed to start video generation for Scene ${i + 1}`)
-        const videoData = await videoResponse.json()
+        if (sceneDuration >= 9) {
+          videoDuration = 10;
+          resolution = '768P';
+        } else {
+          videoDuration = 6;
+          resolution = '1080P';
+        }
 
-        // Poll for completion
-        const finalVideo = await pollTaskStatus(videoData.task_id)
+        // Try to generate video with retry logic
+        let retryCount = 0;
+        const maxRetries = 2;
+        let success = false;
 
-        // Update scene with video URL
-        updateScene(scene.id, { videoUrl: finalVideo.videoUrl })
+        while (retryCount <= maxRetries && !success) {
+          try {
+            if (retryCount > 0) {
+              setProgress({
+                step: 'generating-video',
+                progress: stepProgress,
+                message: `Retrying Scene ${i + 1} (attempt ${retryCount + 1}/${maxRetries + 1})...`
+              })
+            }
 
-        // Archive locally
-        if (runId) {
-          await fetch('/api/save-result', {
-            method: 'POST',
-            body: JSON.stringify({ runId, type: 'video', content: finalVideo.videoUrl, filename: `scene_${i + 1}_video.mp4` })
-          })
+            // Generate video for this scene
+            const videoResponse = await fetch('/api/generate-scene-video', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                firstFrameImage: scene.startFrameUrl,
+                lastFrameImage: scene.endFrameUrl,
+                prompt: scene.prompt,
+                duration: videoDuration,
+                resolution: resolution
+              })
+            })
+
+            if (!videoResponse.ok) throw new Error(`Failed to start video generation for Scene ${i + 1}`)
+            const videoData = await videoResponse.json()
+
+            // Poll for completion with timeout
+            const finalVideo = await pollTaskStatus(videoData.task_id)
+
+            // Update scene with video URL
+            updateScene(scene.id, { videoUrl: finalVideo.videoUrl })
+
+            // Archive locally
+            if (runId) {
+              await fetch('/api/save-result', {
+                method: 'POST',
+                body: JSON.stringify({ runId, type: 'video', content: finalVideo.videoUrl, filename: `scene_${i + 1}_video.mp4` })
+              })
+            }
+
+            success = true;
+          } catch (error: any) {
+            retryCount++;
+            console.error(`Scene ${i + 1} video generation error (attempt ${retryCount}):`, error)
+
+            if (retryCount > maxRetries) {
+              // Skip this scene after max retries
+              console.warn(`Skipping Scene ${i + 1} after ${maxRetries + 1} failed attempts`)
+              toast({
+                title: `Scene ${i + 1} skipped`,
+                description: `Failed to generate video after ${maxRetries + 1} attempts. Continuing with next scene.`,
+                variant: 'destructive',
+              })
+              break;
+            } else {
+              // Wait before retry
+              await new Promise(resolve => setTimeout(resolve, 2000))
+            }
+          }
         }
       }
 
       setProgress({ step: 'complete', progress: 100, message: 'All scene videos ready!' })
-      toast({ title: 'Videos Complete!', description: '6 scene videos generated successfully!' })
+      toast({ title: 'Videos Complete!', description: `${storeScenes.filter(s => s.videoUrl).length} scene videos generated successfully!` })
 
     } catch (error: any) {
       console.error('Video Generation Error:', error)
       toast({
         title: 'Video generation failed',
         description: error.message || 'Failed to generate videos.',
+        variant: 'destructive',
+      })
+      setProgress({ step: 'idle', progress: 0, message: '' })
+    } finally {
+      setIsGenerating(false)
+    }
+  }
+
+  const handleStitchVideos = async () => {
+    const sceneVideoUrls = storeScenes.map(s => s.videoUrl).filter(Boolean)
+
+    if (sceneVideoUrls.length === 0) {
+      toast({
+        title: 'No videos to stitch',
+        description: 'Please generate scene videos first.',
+        variant: 'destructive',
+      })
+      return
+    }
+
+    setIsGenerating(true)
+
+    try {
+      setProgress({ step: 'generating-video', progress: 10, message: 'Stitching videos together...' })
+
+      const response = await fetch('/api/stitch-videos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sceneVideos: sceneVideoUrls,
+          musicUrl: musicPreview?.url,
+          outputFilename: `final_video_${Date.now()}.mp4`
+        })
+      })
+
+      if (!response.ok) throw new Error('Failed to stitch videos')
+
+      const data = await response.json()
+
+      // Calculate total duration from scenes
+      const totalDuration = storeScenes.reduce((sum, s) => sum + (s.endTime - s.startTime), 0)
+
+      // Set the final video result
+      setVideoResult({
+        url: data.video,
+        duration: totalDuration,
+        format: 'mp4'
+      })
+
+      toast({
+        title: 'Video Complete!',
+        description: `Combined ${sceneVideoUrls.length} scenes with music into final video!`
+      })
+
+    } catch (error: any) {
+      console.error('Video stitching error:', error)
+      toast({
+        title: 'Stitching failed',
+        description: error.message || 'Failed to combine videos.',
         variant: 'destructive',
       })
       setProgress({ step: 'idle', progress: 0, message: '' })
@@ -529,7 +639,7 @@ export function VideoPreview() {
                     )}
 
                     {/* Button 2: Generate Videos */}
-                    {storeScenes.every(s => s.startFrameUrl && s.endFrameUrl) && (
+                    {storeScenes.every(s => s.startFrameUrl && s.endFrameUrl) && !storeScenes.some(s => s.videoUrl) && (
                       <Button
                         size="lg"
                         onClick={handleGenerateVideos}
@@ -538,6 +648,19 @@ export function VideoPreview() {
                       >
                         {isGenerating ? <Loader2 className="w-5 h-5 mr-2 animate-spin" /> : <Play className="w-5 h-5 mr-2" />}
                         Generate Scene Videos
+                      </Button>
+                    )}
+
+                    {/* Button 3: Stitch Final Video */}
+                    {storeScenes.some(s => s.videoUrl) && !videoResult && (
+                      <Button
+                        size="lg"
+                        onClick={handleStitchVideos}
+                        className="px-8 bg-green-600 hover:bg-green-700"
+                        disabled={isGenerating}
+                      >
+                        {isGenerating ? <Loader2 className="w-5 h-5 mr-2 animate-spin" /> : <Video className="w-5 h-5 mr-2" />}
+                        Stitch Final Video with Music
                       </Button>
                     )}
                   </div>

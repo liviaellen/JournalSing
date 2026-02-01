@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 10,
+    "prompt": "Cartoony tutorial style scene showing: Alright, let me make sure I understand. You want me to take this entire paper on \"Explainable AI for IoT\" and turn it into a fun, conversational, 60-second TikTok video script? With all those strict r. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "2",
+    "startTime": 10,
+    "endTime": 20,
+    "prompt": "Cartoony tutorial style scene showing: Alright, let me make sure I understand. You want me to take this entire paper on \"Explainable AI for. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "3",
+    "startTime": 20,
+    "endTime": 30,
+    "prompt": "Cartoony tutorial style scene showing: Alright, let me make sure I understand. You want me to take this entire paper on \"Explainable AI for. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "4",
+    "startTime": 30,
+    "endTime": 40,
+    "prompt": "Cartoony tutorial style scene showing: Alright, let me make sure I understand. You want me to take this entire paper on \"Explainable AI for. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "5",
+    "startTime": 40,
+    "endTime": 50,
+    "prompt": "Cartoony tutorial style scene showing: Alright, let me make sure I understand. You want me to take this entire paper on \"Explainable AI for. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "6",
+    "startTime": 50,
+    "endTime": 60,
+    "prompt": "Cartoony tutorial style scene showing: Alright, let me make sure I understand. You want me to take this entire paper on \"Explainable AI for. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  }
+]

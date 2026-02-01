@@ -1,0 +1,441 @@
+
+
+Evolutionary biology
+Male dance moves that
+catch a woman’s eye
+Nick Neave
+1,
+*
+, Kristofor McCarty
+1
+,
+Jeanette Freynik
+2
+, Nicholas Caplan
+1
+,
+Johannes Ho
+ ̈
+nekopp
+1
+and Bernhard Fink
+2
+1
+School of Life Sciences, Northumbria University, Newcastle upon Tyne
+NE1 8ST, UK
+2
+Department of Sociobiology/Anthropology, Institute of Zoology and
+Anthropology, University of Go
+ ̈
+ttingen, Go
+ ̈
+ttingen, Germany
+*Author for correspondence(nick.neave@northumbria.ac.uk).
+Male movements serve as courtship signals in
+many animal species, and may honestly reflect
+the genotypic and/or phenotypic quality of the
+individual. Attractive human dance moves, par-
+ticularly those of males, have been reported to
+show associations with measures of  physical
+strength,  prenatal  androgenization  and  sym-
+metry. Here we use advanced three-dimensional
+motion-capture technology to identify possible
+biomechanical  differences  between  women’s
+perceptions of ‘good’ and ‘bad’ male dancers.
+Nineteen males were recorded using the ‘Vicon’
+motion-capture system while dancing to a basic
+rhythm; controlled stimuli in the form of avatars
+were then created in the form of 15 s video clips,
+and rated by 39 females for dance quality. Initial
+analyses showed that 11 movement variables were
+significantly positively correlated with perceived
+dance quality. Linear regression subsequently
+revealed that three movement measures were
+key predictors of dance quality; these were varia-
+bility and amplitude of movements of the neck
+and trunk, and speed of movements of the right
+knee. In summary, we have identified specific
+movements within men’s dance that influence
+women’s  perceptions  of  dancing  ability.  We
+suggest that such movements may form honest
+signals  of  male  quality  in  terms  of  health,
+vigour or strength, though this remains to be
+confirmed.
+Keywords:movement; courtship signal; dance quality;
+motion-capture
+1. INTRODUCTION
+In 1859, Charles Darwin proposed that certain male
+traits  evolved  owing  to  sexual  selection  via  female
+mate choice [1]. Since then much emphasis has been
+placed  on  conspicuous  male  secondary  sexual  orna-
+ments and associations between such ornaments and
+female  mate  preferences  [2].  However,  such  orna-
+ments are not present in all mammalian species, and
+some authors have suggested that females may evaluate
+males  largely  on  the  quality  of  their   movements,
+especially  those  movements  that  contain  elements  of
+vigour  and/or  skill,  because  these  are  most  likely  to
+indicate   health   and   genetic   quality   [3].   Evidence
+from  birds,  ungulates  and  crustaceans  demonstrates
+that females detect subtle variations in male motor per-
+formance  during  ritualized  courtship  displays,  and
+base  subsequent  reproductive  decisions  upon  such
+differences [4–6]. In humans, dance is a set of inten-
+tional,   rhythmic,   culturally   influenced,   non-verbal
+body movements that are considered to be an impor-
+tant   aspect   of   sexuality   and   courtship   attraction;
+indeed,  dancing  often  forms  part  of  courtship  and
+marriage  celebrations  [7,8].  Dancing  ability,  particu-
+larly that of men, may serve as a signal of male mate
+quality  in  terms  of  physical  strength  [9],  prenatal
+androgenization  [10]  and  symmetry  [11],  and  thus
+affect  women’s  perceptions  of  men’s  attractiveness
+(for review see Hugillet al.[12]).
+Identifying the characteristics of attractive dance in
+natural settings is difficult because of the confounding
+effects of facial attractiveness [13], height [14], cloth-
+ing  and  socioeconomic  status  [15],  dominance  [16],
+body  morphology  and  shape  [17].  Previous  studies
+assessing women’s perceptions of male dancing ability
+have  attempted  to  control  for  these  factors  using
+blurred  video  clips  [9,18]  or  simple  motion-capture
+avatars  [11].  Here,  we  improve  this  methodology
+further using more realistic three-dimensional avatars
+from which precise biomechanical measurements can
+be  extracted.  To  our  knowledge,  no  previous  studies
+have actually identified specific movement components
+within  a  dance  that  may  influence  perceived  dance
+quality,  a  gap  we  aimed  to  fill  in  our  study.  Males
+danced  for  30 s  to  the  same  basic  drum  rhythm  and
+their movements were mapped onto computer-generated
+avatars,    which    females    rated    for    dance    quality.
+Biomechanical  analysis  allowed  the  amplitude,  speed,
+duration and variability of body movements to be calcu-
+lated. Analysis was concentrated on three body regions:
+legs (ankle,  hip and knee), arms (shoulder,  elbow and
+wrist) and the central body (neck and trunk).
+2. MATERIAL AND METHODS
+An initial sample of 30 men aged 18 – 35 (mean¼22.72, s.d.¼4.37)
+took part in the investigation, none of whom were professional dan-
+cers, or had any physical injuries or current health problems which
+could  have  affected  their  movements.  Body  height  and  mass were
+measured, in addition elbow, ankle and wrist widths were measured,
+as well as leg lengths in order to accurately calculate angle data in
+Vicon Workstation.
+A  12-camera  optical  motion-capture  system  (Vicon  612,  Vicon,
+Oxford)  was  used,  running  Vicon  workstation  v.4.6  software.  Each
+camera  captured  at  a  constant  rate  of  100 Hz.  Thirty-eight  14 mm
+reflective  markers  were  attached  to  each  participant  in  accordance
+with the Vicon Plug-In-Gait marker set to capture all the major struc-
+tures  of the body.  Participants were requested  to  perform one  static
+calibrationcapturealongwithone30sdancetoaconstantcore
+drum beat to eliminate music likeability as a possible confound. Partici-
+pants were not given any prior instruction on how they should dance.
+For avatar construction, it is vital that all the markers should be
+recognized, and that all optical data are complete and does not con-
+tain any gaps. Often, the reflective markers become detached, or are
+occluded by arm movements. If this occurs to any marker during a
+trial, the necessary joint angles cannot be calculated. Eleven partici-
+pants were thus excluded from the study owing to incomplete marker
+capture, leaving 19 male dancers. Their motion-capture data were
+used  to  animate  a  virtual  character  (an  avatar),  using  Autodesk
+MotionBuilder, 2010. The avatar chosen was a featureless, gender-
+neutral  humanoid  character  that  was  included  in  the  software
+package  in  order  to  put  maximum  emphasis  on  the  biological
+movement (figure 1).
+Using   these   avatars,   37   heterosexual   women   aged   18 – 35
+(mean¼22.30,  s.d.¼6.22)  rated  dance  quality  for  all  19  male
+dancers  in  a  serial,  randomized  order  based  on  a  15 s  episode
+(middle   section   of   each   dance)   shown   in   an   800600 pixel
+window  centred  on  a  15.4  inch  laptop  screen  (1440900 pixel
+Electronic  supplementary material is available athttp://dx.doi.org/
+10.1098/rsbl.2010.0619or viahttp://rsbl.royalsocietypublishing.org.
+Biol. Lett.(2011)7, 221–224
+doi:10.1098/rsbl.2010.0619
+Published online8 September 2010
+Received7 July 2010
+Accepted18 August 2010
+221
+This journal isq2010 The Royal Society
+
+resolution) using MEDIALABv. 1.33 (Empirisoft Inc., New York, NY,
+USA). The core audio track was not presented to raters. Immediately
+after each presentation of a dancer, participants made a judgement of
+dance quality on a seven-point Likert-type scale (from 1¼extremely
+bad  dancer  to  7¼extremely  good  dancer).  After  each  rating,  the
+participant was prompted to move on to the next rating segment. Sub-
+sequent  analyses  were  based  on  mean  ratings  (M¼3.7,  s.d.¼0.8,
+Cronbach’s
+a¼0.94).
+A  kinematic  model  (Plug-In-Gait, Vicon,  Oxford)  was  used  to
+generate three-dimensional  joint  angles  for  the  knees,  hips,  trunk,
+neck, shoulders and wrists. Ankle angle was calculated in two dimen-
+sions (flexion/extension and internal/external rotation) and for the
+elbow in one dimension (flexion/extension). Each joint angle was fil-
+tered using a second-order Butterworth low-pass filter with a cut-off
+frequency of 10 Hz. Simple visual inspection of the angles showed
+that they fluctuated in magnitude in a series of unidirectional move-
+ments. The amplitude and duration of each unidirectional movement
+were calculated as the angular displacement and time, respectively,
+between successive reversals in direction. The mean speed of each
+angular  movement  between  direction  reversals  was  calculated  as
+the amplitude divided by the duration. The change in the magnitude
+of each joint angle from the mean joint position for the entire trial
+(angular offset) was determined at each movement reversal. Move-
+ment variability was then calculated as the standard deviation of all
+angular offsets for each joint angle. Because of the large number of
+joint  angles  produced  (n¼38),  movement  amplitude,  duration,
+speed and variability were each grouped by body region, after ensur-
+ing  that  the  variance  in  variables  within  each  body  segment  was
+similar.  Three  body  regions  were  generated,  including  the  legs
+(ankles, knees and hips), arms (shoulders, elbows and wrists) and
+central body (trunk and neck).
+3. RESULTS
+Kolmogorov – Smirnov  tests  were  used  to  check  for
+normal  distribution  of  each  movement  variable  both
+for   combined   body   regions   and   their   constituent
+parts.  For  variables  with  normal  distribution,  two-
+tailed   Pearson   product – moment   correlations   were
+performed  between  mean  ratings  of  dance  quality
+and  each  of  the  three  body  regions  for  movement
+amplitude,   movement   variability,   movement   speed
+and  movement  duration.  For  variables  that  were not
+normally  distributed,  Spearman’s  rank  correlations
+were  used.  If  a  significant  correlation  was  found  for
+any  one  body  region,  a  further  correlation  was  per-
+formed  between  ratings  of  dance  quality  and  the
+constituent  parts  of  that body  region.  A  95  per cent
+confidence level was used throughout. A summary of
+the significant correlations is presented intable 1.
+For  movement  amplitude,  all  variables  were  nor-
+mally   distributed.   We   found   significant   positive
+correlations  between  dance  ratings  and  the  central
+body region. Key components comprised of: neck flex-
+ion/extension (head nodding), trunk flexion/extension
+(forward/backward  bending)  and  trunk  abduction/
+adduction (sideways bending).
+For  movement  variability,  all  three  body  regions
+were normally distributed, although seven of their 38
+constituent parts were not. We found significant posi-
+tive  correlations  between  dance  ratings  and  central
+body  region  variability  with  all  components  being
+important,  these  were:  neck  flexion/extension;  neck
+abduction/adduction   (head   sideways   tilting);   neck
+internal/external  rotation  (head  shaking);  trunk  flex-
+ion/extension; trunk adduction/abduction; and trunk
+internal/external rotation (twisting).
+Finally, for movement speed, all data were normally
+distributed. We found a significant positive relationship
+between speed of the legs and dance ratings, the rel-
+evant components being speed of right knee flexion/
+extension (bending) and speed of right knee internal/
+external rotation (twisting).
+When the significant constituent parts were fed into
+a  stepwise  linear  regression  to  predict  dance  ratings,
+neck  internal/external  rotation variability  (
+b¼0.29),
+trunk    adduction/abduction    variability    (
+b¼0.46)
+and  right  knee  internal/external  rotation  speed  (
+b¼
+0.38)  contributed  to  the  final  model  (F
+3,15
+¼18.9,
+p,0.001),  which  accounted  for  79  per  cent  of  the
+variance in the mean dance ratings.
+4. DISCUSSION
+By  using  cutting-edge  motion-capture  technology,  we
+have  been  able  to  precisely  break  down  and  analyse
+specific motion patterns in male dancing that seem to
+influence  women’s  perceptions  of  dance  quality.  We
+find  that  the  variability  and  amplitude  of  movements
+in  the  central  body  regions  (head,  neck  and  trunk)
+and speed of the right knee movements are especially
+important in signalling dance quality. A ‘good’ dancer
+thus  displays  larger  and  more  variable  movements  in
+relation  to  bending  and  twisting  movements  of  their
+head/neck and torso, and faster bending and twisting
+movements of their right knee. As 80 per cent of indi-
+viduals  are  right-footed  [19],  greater  movements  of
+the right knee in comparison with the left are perhaps
+to be expected. In comparative research, there is exten-
+sive literature on the signalling capacities of movement
+(see Byerset al.[3]). Researchers have suggested that
+females  prefer  vigorous  and  skilled  males;  such  cues
+are derived from male motor performance that provides
+a signal of his physical condition [3–6].
+Our data indicate that in humans, certain aspects of
+movement  amplitude,  speed  and  variability  are  also
+important for female perceptions of male dancing abil-
+ity. We suggest that human male movements could also
+form  honest  signals  of  traits  such  as  health,  fitness,
+genetic  quality  and  developmental  history  [9–12],
+though  this  remains to  be  confirmed.  By  uncovering
+some specific movement parameters used in the assess-
+ments of dance quality, we are now in a much stronger
+position  to  further  research  the  possible  signalling
+(a)(b)
+Figure 1. Examples of an avatar created for the rating pur-
+poses. (a) Static pose, while (b) shows an avatar ‘dancing’.
+222    N. Neaveet al.  Perception of male dance
+Biol. Lett.(2011)
+
+mechanisms   of   dance   in   humans.   Future   studies
+should  systematically  manipulate  the  dance  moves
+that we have identified as being most important, and
+assess  the  effects  of  such  manipulations  on  female
+perceptions of dance quality.
+We  thank  Alistair  Ewen  for  his  assistance  in  operating  the
+Vicon  system  and  three  anonymous  reviewers  for   their
+helpful  comments.  This  research  was  supported  by  the
+German  Research  Foundation  (DFG).  B.F.  is  currently
+funded by an Emmy-Noether Fellowship of the DFG.
+1  Darwin, C. R. 1859On the origin of species by means of
+natural selection, or the preservation of favoured races in the
+struggle for life. London, UK: J. Murray.
+2  Jennions,  M.  D.  &  Petrie,  M.  1997  Variation  in  mate
+choice  and  mating  preferences:  a  review  of  causes  and
+consequences.Biol. Rev.72,  283 – 327.  (doi:10.1017/
+S0006323196005014)
+3  Byers, J., Hebets, E. & Podos, J. 2010 Female mate choice
+based  upon  male  motor  performance.Anim. Behav.79,
+771 – 778. (doi:10.1016/j.anbehav.2010.01.009)
+4  Byers, J. A., Moodie, J. D. & Hall, N. 1994 Pronghorn
+females choose vigorous mates.Anim. Behav.47, 33 – 43.
+(doi:10.1006/anbe.1994.1005)
+5  Clark, C. J. 2009 Courtship dives of Anna’s humming-
+bird   offer   insights   into   flight   performance   limits.
+Proc. R. Soc. B276,  3047 – 3052.  (doi:10.1098/rspb.
+2009.0508)
+6  Murai,  M.  &  Backwell,  P.  R.  Y.  2006  A  conspicuous
+courtship signal in the fiddler crabUca perplexa: female
+choice based on display structure.Behav. Ecol. Sociobiol.
+60, 736 – 741. (doi:10.1007/s00265-006-0217-x)
+7  Hanna,  J.  L.  2010  Dance  and  sexuality:  many  moves.
+J.   Sex    Res.47,212 – 241.(doi:10.1080/
+00224491003599744)
+Table  1.  Correlations  between  movement  variables  and  ratings  of  dance  quality.  Correlations  for  sub-components  are
+presented only when the principal component was significantly correlated with dance rating.
+movement amplitudemovement variabilitymovement speed
+armsr¼0.45;p¼0.051r¼0.44;p¼0.057r¼0.34;p¼0.153
+right shoulder flexion/extensionn.a.n.a.n.a.
+right shoulder abduction/adductionn.a.n.a.n.a.
+right shoulder internal/external rotationn.a.n.a.n.a.
+right elbow flexion/extensionn.a.n.a.n.a.
+right wrist flexion/extensionn.a.n.a.n.a.
+right wrist abduction/adductionn.a.n.a.n.a.
+right wrist internal/external rotationn.a.n.a.n.a.
+left shoulder flexion/extensionn.a.n.a.n.a.
+left shoulder abduction/adductionn.a.n.a.n.a.
+left shoulder internal/external rotationn.a.n.a.n.a.
+left elbow flexion/extensionn.a.n.a.n.a.
+left wrist flexion/extensionn.a.n.a.n.a.
+left wrist abduction/adductionn.a.n.a.n.a.
+left wrist internal/external rotationn.a.n.a.n.a.
+central bodyr¼0.55
+a
+;p,0.05r¼0.81
+a
+;p,0.001r¼0.41;p¼0.082
+neck flexion/extensionr¼0.47
+a
+;p,0.05r¼0.68
+a,b
+;p,0.01n.a.
+neck abduction/adductionr¼0.30;p¼0.219r¼0.66
+a
+;p,0.05n.a.
+neck internal/external rotationr¼0.38;p¼0.113r¼0.73
+a
+;p,0.001n.a.
+trunk flexion/extensionr¼0.67
+a
+;p,0.01r¼0.68
+a
+;p,0.01n.a.
+trunk abduction/adductionr¼0.48
+a
+;p,0.05r¼0.68
+a
+;p,0.01n.a.
+trunk internal/external rotationr¼0.08;p¼0.734r¼0.51
+a,b
+;p,0.05n.a.
+legsr¼0.24;p¼0.332r¼0.23;p¼0.334r¼0.47
+a
+;p,0.05
+right hip flexion/extensionn.a.n.a.r¼0.21;p¼0.393
+right hip abduction/adductionn.a.n.a.r¼0.02;p¼0.925
+right hip internal/external rotationn.a.n.a.r¼0.23;p¼0.337
+right knee flexion/extensionn.a.n.a.r¼0.52
+a
+;p,0.05
+right knee abduction/adductionn.a.n.a.r¼0.24;p¼0.317
+right knee internal/external rotationn.a.n.a.r¼0.70
+a
+;p,0.01
+right ankle flexion/extensionn.a.n.a.r¼0.40;p¼0.100
+right ankle internal/external rotationn.a.n.a.r¼0.24;p¼0.329
+left hip flexion/extensionn.a.n.a.r¼20.01;p¼0.963
+left hip abduction/adductionn.a.n.a.r¼0.02;p¼0.944
+left hip internal/external rotationn.a.n.a.r¼0.31;p¼0.200
+left knee flexion/extensionn.a.n.a.r¼0.31;p¼0.193
+left knee abduction/adductionn.a.n.a.r¼20.03;p¼0.901
+left knee internal/external rotationn.a.n.a.r¼0.34;p¼0.160
+left ankle flexion/extensionn.a.n.a.r¼20.04;p¼0.886
+left ankle internal/external rotationn.a.n.a.r¼20.11;p¼0.646
+a
+Denotes significant correlations.
+b
+Indicates a correlation where the movement variable was not normally distributed.
+Perception of male danceN. Neaveet al.223
+Biol. Lett.(2011)
+
+8  Kaeppler, A. L. 1978 Dance in anthropological perspec-
+tive.Ann. Rev. Anthropol.7,   31 – 49.   (doi:10.1146/
+annurev.an.07.100178.000335)
+9  Hugill,  N.,  Fink,  B.  &  Neave,  N.  2009  Men’s  physical
+strength is associated with women’s perceptions of their
+dancing  ability.Personal. Individ. Diff.47,  527 – 530.
+(doi:10.1016/j.paid.2009.04.009)
+10  Fink, B., Seydel, H., Manning, J. T. & Kappeler, P. M.
+2007  A  preliminary  investigation  of  the  associations
+between  digit  ratio  and  women’s  perception  of  men’s
+dance.Personal. Individ. Diff.42,  381 – 390.  (doi:10.
+1016/j.paid.2006.07.019)
+11 Brown,W.M.,Cronk,L.,Grochow,K.,Jacobson,A.,Liu,
+C. K., Popovic
+ ́
+, Z. & Trivers, R. 2005 Dance reveals sym-
+metry  especially  in  young  men.Nature438,  1148 – 1150.
+(doi:10.1038/nature04344)
+12  Hugill, N., Fink, B. & Neave, N. 2010 The role of human
+body movements in mate selection.Evol. Psychol.8,49–73.
+13  Cunningham, M. R., Barbee, A. P. & Pike, C. L. 1990
+What do women want? Facialmetric assessment of mul-
+tiple  motives  in  the  perception  of  male  facial  physical
+attractiveness.J.  Person.  Soc.  Psychol.59,   61 – 72.
+(doi:10.1037/0022-3514.59.1.61)
+14  Pawlowski,  B.,  Dunbar,  R.  I.  M.  &  Lipowicz,  A.  2000
+Evolutionary  fitness:  tall  men  have  more  reproductive
+success.Nature403, 156. (doi:10.1038/35003107)
+15  Townsend, J. M. & Levy, G. D. 1990 Effects of potential
+partners’ costume and physical attractiveness on sexuality
+and partner selection.J. Psychol.124, 371 – 389.
+16  Sadella, E. K., Kenrick, D. T. & Vershure, B. 1987 Dom-
+inance  and  heterosexual  attraction.J. Personal Social
+Psychol.52, 730 – 738.
+17  Maisey, D. S., Vale, E. L. E., Cornelissen, P. L. & Tove
+ ́
+e,
+M.  J.  1999  Characteristics  of  male  attractiveness  for
+women.Lancet353,1500.(doi:10.1016/S0140-
+6736(99)00438-9)
+18  Berry, D. S., Kean, K. J., Misovich, S. J. & Baron, R. M.
+1991 Quantized displays of human movement: a meth-
+odologicalalternativetothepoint-lightdisplay.
+J.   Nonverb.   Behav.15,81 – 97.(doi:10.1007/
+BF00998264)
+19  Coren, S. 1992Left hander. London, UK: John Murray.
+224    N. Neaveet al.  Perception of male dance
+Biol. Lett.(2011)

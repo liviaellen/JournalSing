@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 10,
+    "prompt": "Cartoony tutorial style scene showing: Wait, check this out - scientists found that a guy's dance moves can actually show off his health and fitness! Who knew? I mean, we've all been there, right? You're at a party, and there's that one gu. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "2",
+    "startTime": 10,
+    "endTime": 20,
+    "prompt": "Cartoony tutorial style scene showing: ### Generated Response. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "3",
+    "startTime": 20,
+    "endTime": 30,
+    "prompt": "Cartoony tutorial style scene showing: That's a great summary! It captures the key findings of the study and presents them in a clear and engaging way. The use of a conversational tone and the inclusion of specific details from the study h. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "4",
+    "startTime": 30,
+    "endTime": 40,
+    "prompt": "Cartoony tutorial style scene showing: ### Generated Response. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "5",
+    "startTime": 40,
+    "endTime": 50,
+    "prompt": "Cartoony tutorial style scene showing: This research has shed light on an intriguing aspect of human behavior: the relationship between dance moves and perceptions of health and fitness. The findings suggest that a person's dance moves can. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "6",
+    "startTime": 50,
+    "endTime": 60,
+    "prompt": "Cartoony tutorial style scene showing: [Witty Hook] Wait, check this out - scientists found that a guy's dance moves can actually show off . Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  }
+]

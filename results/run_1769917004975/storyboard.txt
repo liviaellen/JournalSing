@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 10,
+    "prompt": "A smiling animated male character pops onto screen, leaning forward with raised eyebrows as if sharing a juicy secret. Bright spotlights illuminate a modern dance studio with checkered floors. Wide shot with dynamic overhead angle to show the entire stage. The character wears a vibrant tracksuit and holds up one finger for emphasis."
+  },
+  {
+    "id": "2",
+    "startTime": 11,
+    "endTime": 21,
+    "prompt": "Nineteen animated male dancers in motion-capture suits gather in a circle, their bodies outlined with glowing digital tracking points. Each character vibrates with energy, doing identical simple dance moves in perfect rhythm. The room fills with abstract musical waves pulsing from invisible speakers. Low-angle perspective emphasizing the group formation and synchronized movement."
+  },
+  {
+    "id": "3",
+    "startTime": 22,
+    "endTime": 32,
+    "prompt": "Thirty-seven animated women sit in a movie theater-style row, wearing fancy dresses and holding small scorecards. A giant screen projects silent dance videos of men in silhouetted form. Each woman concentrates intently, pressing buttons on her card with expressions of deep focus. Soft velvet theater lighting creates an intimate evaluation atmosphere. Over-the-shoulder view from women's perspective watching the screen."
+  },
+  {
+    "id": "4",
+    "startTime": 33,
+    "endTime": 43,
+    "prompt": "Three animated scientists in lab coats gather around a large 3D projection of a dancing figure. Color-coded movement trails swirl around specific body parts - green for head, yellow for torso, red for knee. Floating text labels appear: \"Energy\", \"Fitness\", \"Agility\". The researchers point excitedly at rotating data models, wearing huge grins. Zoom-in shot on the central hologram with scientists in background, dramatic blue laboratory lighting."
+  },
+  {
+    "id": "5",
+    "startTime": 44,
+    "endTime": 54,
+    "prompt": "Two animated male dancers face each other, one with dull movements in grayscale, the other exploding with vibrant colored trails: purple head waves, orange torso twists, bright green knee flashes. Arrow graphics link specific motions to health icons: heart (energy), flexed bicep (fitness), running shoe (agility). A sparkle effect highlights the colorful dancer's superiority. Side-by-side split-screen comparison with dynamic particle effects."
+  },
+  {
+    "id": "6",
+    "startTime": 55,
+    "endTime": 65,
+    "prompt": "A microphone appears on a dark stage. The scientist from earlier steps forward, holding the mike with a playful wink. Behind her, a giant screen flashes study results - checkmarks and positive symbols pop up. Warm stage lights bathe the scene in gold. Close-up on the scientist with animated sound waves radiating from the microphone."
+  }
+]

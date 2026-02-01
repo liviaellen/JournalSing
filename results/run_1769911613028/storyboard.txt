@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 10,
+    "prompt": "In a cozy art studio, a cheerful animated pigeon with bright blue feathers inspects a colorful Monet painting of water lilies, tilting its head with a curious expression. Warm sunlight streams through large windows, illuminating the bird and the canvas. Close-up on the pigeon's fascinated eyes as it examines the brushstrokes."
+  },
+  {
+    "id": "2",
+    "startTime": 10,
+    "endTime": 20,
+    "prompt": "The scene shifts to a modern lab where pigeons peck at screens displaying Monet and Picasso artworks, earning treats for correct choices. Bright, lab lighting highlights their focus, with one pigeon proudly pecking a Monet screen. Mid-shot of the testing environment with colorful monitors in the background."
+  },
+  {
+    "id": "3",
+    "startTime": 20,
+    "endTime": 30,
+    "prompt": "Back in the art gallery, a gray-feathered pigeon gazes at a grayscale Picasso painting with a puzzled expression, as if contemplating abstract shapes. Soft gallery lighting catches its thoughtful pose. Close-up on the pigeon's face, capturing its puzzled look."
+  },
+  {
+    "id": "4",
+    "startTime": 30,
+    "endTime": 40,
+    "prompt": "At a whimsical science station, pigeons are seen flipping colorful cards, reacting with quick pecks to earn rewards when identifying Monet’s style. Vibrant, playful lighting enhances the joyful atmosphere. Wide shot of the experimental setup with cards scattered and pigeons interacting playfully."
+  },
+  {
+    "id": "5",
+    "startTime": 40,
+    "endTime": 50,
+    "prompt": "In a lively outdoor park, a pigeon with green feathers observes a child’s painting, tilting its head in curiosity. Natural daylight highlights the playful interaction. Mid-shot of the pigeon and child, with a paintbrush and easel nearby."
+  },
+  {
+    "id": "6",
+    "startTime": 50,
+    "endTime": 60,
+    "prompt": "The final scene shows a group of animated pigeons perched on an art gallery’s large window ledge, gazing inside with a sense of wisdom. Soft evening light casts a warm glow on their feathers. Wide shot of the pigeons against the art-filled gallery interior, a peaceful end to the story."
+  }
+]

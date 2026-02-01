@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ scenes })
   } catch (error: any) {
-    console.error('Scene regeneration error:', error)
+    console.error('Scene regeneration error details:', error)
     return NextResponse.json(
       { error: error.message || 'Failed to regenerate scenes' },
       { status: 500 }

@@ -1,0 +1,991 @@
+
+
+Explainable AI: Learning from the
+Learners
+Ricardo Vinuesa
+1
+, Steven L. Brunton
+2
+and Gianmarco
+Mengaldo
+3
+1
+Department of Aerospace Engineering, University of Michigan, Ann Arbor,
+Michigan 48109, USA, Email: rvinuesa@umich.edu.
+2
+Department of Mechanical Engineering, University of Washington, Seattle,
+Washington 98195, USA, Email: sbrunton@uw.edu.
+3
+National University of Singapore, National University of Singapore, Engineering
+Drive 1, Singapore, 117575, Singapore, Email: mpegim@nus.edu.sg.
+Abstract
+Artificial intelligence now outperforms humans in several scientific and engi-
+neering  tasks,  yet  its  internal  representations  often  remain  opaque.  In  this
+Perspective, we argue that explainable artificial intelligence (XAI), combined
+with causal reasoning, enables learning from the learners. Focusing on discov-
+ery, optimization and certification, we show how the combination of foundation
+models and explainability methods allows the extraction of causal mechanisms,
+guides  robust  design  and  control,  and  supports  trust  and  accountability  in
+high-stakes applications. We discuss challenges in faithfulness, generalization
+and usability of explanations, and propose XAI as a unifying framework for
+human-AI collaboration in science and engineering.
+Introduction
+Scientific  progress  has  long  depended  on  building  interpretable  models  of
+complex systems, from Newton’s laws to the Navier–Stokes equations, which
+encode mechanistic understanding and enable prediction, control and design.
+In  recent  years,  however,  machine  learning  (ML)  has  begun  to  transform
+this  paradigm.  Deep  neural  networks  can  now  infer  relationships  in  high-
+dimensional data that are inaccessible to classical theory, often matching or
+surpassing human experts in tasks ranging from protein folding [1] to turbu-
+lence control [2]. This new reality raises a profound question: if machines can
+learn representations of physical systems that outperform human models, can
+1
+arXiv:2601.05525v1  [cs.AI]  9 Jan 2026
+
+we, in turn, learn from the learners? Addressing this question requires explain-
+able artificial intelligence (XAI) [3]: a suite of methods that make the internal
+logic of ML systems interpretable to human reasoning.
+Explanations have always been central to scientific inquiry: they connect
+abstract models to causal understanding and experimental validation. In mod-
+ern deep learning, however, the representations learned by a model are rarely
+transparent  [4].  XAI  thus  provides  the  missing  interface  between  machine
+predictions and human understanding, allowing researchers to inspect which
+features  drive  the  decisions  of  a  model,  quantify  their  causal  influence  and
+assess whether the learned mechanisms are physically meaningful.
+The connection between explainability and causality [5–7] is particularly
+relevant for science and engineering. Causality formalizes the notion of inter-
+vention, and is thus essential to scientific reasoning. Recent developments in
+causal inference and information theory allow decomposition of causal effects
+into unique, redundant, and synergistic components [8], enabling a more gran-
+ular view of how different variables contribute to an outcome. Such tools help
+distinguish true physical mechanisms from spurious correlations that may arise
+in complex datasets. When combined with XAI techniques such as SHapley
+Additive exPlanations (SHAP) [3] or integrated gradients [9], they enable a
+mechanistic  understanding  of  deep-learning  models:  which  regions  of  a  flow
+field, which frequencies in a spectrum, or which molecular configurations are
+most  responsible  for  a  predicted  outcome.  This  causal-explanatory  synergy
+opens new opportunities to extract scientific laws from data-driven systems.
+A key point in this context is generalizability. Models that are fully explain-
+able in a narrow domain but fail when extrapolated to new conditions provide
+limited scientific insight. Explainability therefore complements generalization:
+only by identifying the underlying mechanisms can one predict the behavior
+under  unseen  parameters.  Explainability  also  plays  a  decisive  role  in  iden-
+tifying  the  mechanisms  behind  extreme  events.  These  rare  but  high-impact
+occurrences (e.g. extreme weather or structural failures) are often underrep-
+resented in the training datasets and are thus poorly captured by statistical
+models. Indeed, AI models tend to overfit frequent regimes while missing rare
+ones [10]. XAI methods can reveal the subtle precursors leading to such events,
+differentiating  causal  chains  from  correlations.  This  capability  is  critical  for
+safety and resilience in both natural and engineering systems, where predicting
+extremes may depend on uncovering weakly correlated but dynamically dom-
+inant features. This information, in turn, can help shape ML-model behavior,
+thereby improving forecasts of rare events.
+Recent advances in self-supervised learning and diffusion models [11] fur-
+ther  expand  the  scope  of  explainability.  These  approaches  learn  by  context
+rather than explicit supervision, discovering the statistical structure of their
+environment. By embedding physics into such architectures (through induc-
+tive biases, conservation constraints or equivariance principles) these models
+can capture the latent organization of complex systems. Yet, the more power-
+ful these models become, the more opaque their internal reasoning tends to be.
+2
+
+Interpretable training signals, causal priors and physically meaningful embed-
+dings are therefore essential for ensuring that generalization arises from the
+identified mechanisms and not by coincidence.
+It  is  also  essential  to  note  that  explainability  can  be  illusory.  Not  every
+attribution map or saliency pattern constitutes a true explanation. Post-hoc
+justifications (especially those mimicking human reasoning) can create a false
+sense  of  understanding.  Anthropomorphic  metaphors  (e.g.,  describing  net-
+works  as  “attending”  or  “reasoning”)  may  obscure  what  a  model  actually
+computes  [12,  13].  Thus,  explainability  itself  must  be  subjected  to  rigor-
+ous  validation  [14],  with  metrics  for  faithfulness  and  stability  ensuring  that
+explanations correspond to real causal influence [15].
+In this Perspective, we argue that explainable AI offers not just interpre-
+tive insight but a framework for scientific collaboration between humans and
+machines. As summarized in Figure 1, we focus on three domains: discovery,
+optimization  and  certification,  which  are  connected  with  science,  engineer-
+ing and auditing. In discovery, XAI aids in unveiling causal mechanisms and
+uncovering  governing  equations  from data.  In  optimization,  it guides  design
+and control by revealing which parameters, mechanisms or spatial regions drive
+performance. And in certification, it achieves trust and accountability, allow-
+ing automated systems to be audited and aligned with human values. These
+domains are tightly coupled: insights discovered through explainable models
+inform optimization strategies, and the interpretability required for certifica-
+tion constrains how discoveries are validated and deployed. Explainability thus
+acts as the link between data-driven learning, mechanistic understanding and
+ethical governance.
+Deep  learning  has  paradoxically  expanded  both  the  opacity  and  the
+potential of scientific models. While black-box architectures outperform inter-
+pretable  surrogates,  they  also  contain  within  them  rich  representations  of
+physical  phenomena.  If  extracted  properly  [16],  these  representations  may
+reveal new principles (similarly to how symbolic-regression methods [17] dis-
+tilled  empirical  laws  from  data),  but  now  at  a  scale  spanning  billions  of
+parameters  and  multidimensional  manifolds  [18].  Explainable  AI  provides
+the tools for this extraction, translating machine-learned representations into
+human  knowledge.  As  the  boundaries  between  simulation,  optimization  and
+automated  reasoning  blur,  the  ability  to  interpret  how  machines  learn  will
+determine  whether  artificial  intelligence  becomes  a  scientific  collaborator  or
+merely a computational tool.
+Ultimately, learning from the learners requires more than decoding predic-
+tions: it involves understanding the underlying reasoning processes. Through
+linking causal inference, interpretability and generalization, XAI can turn data-
+driven models into engines of discovery and control that not only predict the
+world but also explain it. The following sections explore how this vision unfolds
+across the three core domains, each bringing distinct challenges and converging
+towards a shared goal: a new form of science in which humans and machines
+co-create understanding.
+3
+
+Figure 1: Summary of the application areas for explainable AI dis-
+cussed in this study. The three main areas of discovery, optimization and
+certification (generally associated with science, engineering and auditing) are
+ranked in terms of the risk of the application and of how easy it is to obtain
+explanations in that context. For each area we list relevant methods (in bold
+face) and an example of application in the context of fluid mechanics for vehicle
+aerodynamic design.
+Explainable AI for Discovery
+There  is  tremendous  potential  for  AI  to  drive  progress  in  scientific  dis-
+covery,  with  examples  already  emerging  in  fields  as  diverse  as  molecular
+biology [1, 19, 20], fusion [21], astrophysics [22–24], and fluid dynamics [25–27].
+It is likely that the future of science will involve an even deeper collaboration
+between humans and AI agents. However, many of our most powerful deep-
+learning architectures are opaque and do not readily provide insights into how
+outcomes and predictions are generated. This opacity is in direct conflict with
+the  scientific  method  [13],  which  demands  detailed  explanations  and  causal
+mechanisms, which provide the ability to justify conclusions, verify results, and
+design new hypotheses to be tested. If we aim to remain active participants in
+this collaboration, we must not only seek models with the highest prediction
+accuracy, but instead design models that uncover simple, explainable causal
+mechanisms.
+Fortunately,  there  are  several  techniques  that  help  provide  the  explain-
+ability required for AI agents to work collaboratively with human scientists.
+Explainability in a scientific context typically relies on identifying causal mech-
+anisms that are parsimonious, meaning that they are as simple as required to
+describe the data, and cannot be made simpler. Parsimonious models tend to
+be more interpretable by design, and more generalizable, as they discourage
+4
+
+overfitting and distill the key underlying mechanisms of a system. This princi-
+ple of parsimony, also known as Occam’s razor, has been the gold standard in
+physics for 2,000 years, from Aristotle to Einstein, and it is unlikely that this
+paradigm will be upended in a few decades of AI research.
+Of  course,  we  hope  that  AI  agents  will  uncover  correlations  and  mecha-
+nisms that are more sophisticated than humans are able to explore directly.
+However,  complexity  is  not  incompatible  with  explainability,  provided  the
+explanations  are  composable  in  terms  of  simpler  concepts.  Many  complex
+systems are understood through sequences of individually explainable steps,
+even  when  the  overall  system  requires  substantial  expertise  to  master,  such
+as operating a nuclear reactor or assembling an aircraft. In scientific discov-
+ery, we may therefore accept a reduction in descriptive accuracy in exchange
+for models that expose fundamental and generalizable mechanisms. For exam-
+ple, Kepler’s elliptical orbits were less accurate than Ptolemy’s astronomical
+system, yet they revealed a simpler and more generalizable structure that ulti-
+mately enabled further scientific progress. Similarly, Galileo’s constant gravity
+model was less accurate in explaining the trajectories of falling objects that
+Aristotle’s density-based approach, although it captured a fundamental under-
+lying principle. Indeed, after this explainable bit of physics, it was then possible
+to  improve  the  model  with  additional  physics,  such  as  wind  resistance,  and
+vortex shedding, among others.
+There are several techniques at our disposal to promote parsimonious, and
+hence explainable, AI models. Sparsity and low-dimensionality have long been
+used in machine learning to constrain models toward representations that iso-
+late the essential degrees of freedom of a system. By limiting the number of
+active variables or latent dimensions, these approaches support interpretabil-
+ity even when the underlying implementations are complex. Sparse symbolic
+regression provides a particularly clear path towards parsimonious models, as
+the explicit objective is to discover simple equations that describe the data or
+the function learned by a model.
+Symbolic regression is a particularly useful technique in machine learning
+for scientific discovery, resulting in models that take the form of parsimonious
+symbolic expressions. These models are often more interpretable to humans, as
+they can uncover the causal relationships necessary for explainability. Today
+there are two main approaches to symbolic regression: genetic programming
+to grow function trees compositionally, and sparse regression in a library of
+candidate terms. These approaches are complementary, operating in different
+regimes  of  expressivity,  data  efficiency,  and  computational  cost  [28].  In  the
+following, we will briefly review each approach and highlight how they have
+been useful in explainable AI-enabled scientific discovery.
+Genetic  programming  (GP)  grows  increasingly  sophisticated  function
+expressions  through  composition  of  simpler  basis  functions,  such  as  addi-
+tion, multiplication, trigonometric functions, and other elementary operations.
+Although GP was widely used for decades, it became a powerful tool for par-
+simonious  scientific  discovery  in  the  work  of  Bongaard  and  Lipson  [29]  and
+5
+
+Schmidt and Lipson [30]. A key contribution of this work was their empha-
+sis  on  the  importance  of  parsimony  in  symbolic  learning,  using  the  Pareto
+frontier of model complexity versus accuracy to identify expressions that are
+both simple and descriptive. In the intervening years, great strides have been
+made [17, 31–33], with PySR [17] emerging as a powerful general-purpose tool
+for symbolic regression in scientific discovery.
+More  recently,  sparse  regression  has  emerged  as  a  particularly  effective
+technique for parsimonious symbolic regression in scientific discovery [16]. The
+sparse identification of nonlinear dynamics (SINDy) algorithm identifies the
+fewest terms in a library of candidates functions needed to describe a given
+system, typically the right-hand side of a differential equation. By construc-
+tion, these models have relatively few parameters, making them data efficient
+and contributing directly to their interpretability and generalizability. SINDy
+is particularly extensible because it is based on generalized linear regression
+in a  library of nonlinear  functions, with variants that  incorporate  actuation
+and control [34]. Importantly for scientific discovery, it is possible to enforce
+symmetries and constraints derived from known physics [26], such as energy
+conservation in incompressible fluids, which in turn makes it possible to guar-
+antee model stability [35]. The dual perspective is to learn what symmetries
+are present in a dataset or model, providing an additional and powerful form
+of physical explainability [36].
+One of the most important applications of sparse symbolic regression for
+scientific discovery is its extension to partial differential equations (PDEs) [37,
+38]. By augmenting the library with partial derivatives, it is possible to learn
+a sparse representation of the governing PDE directly from data. While this
+approach is generally sensitive to noise, it has been augmented with the weak
+formulation [39, 40] and ensemble learning [41] to dramatically improve noise
+robustness. These advances have enabled the discovery of entirely new, inter-
+petable  physics  models  in  domains  including  closure  modeling  for  turbulent
+fluids [42–44], plasmas [45], Galerkin models [26], active matter [46], and geo-
+physical  flows  [47].  Other  symbolic  approaches  for  PDE  learning  have  also
+shown promise [48].
+Closely related to discovering parsimonious models of system dynamics is
+the importance of identifying effective coordinate systems in which to repre-
+sent the dynamics. Many major scientific breakthroughs were preceded by the
+discovery of appropriate coordinate; for example, the Copernican model, which
+placed the sun at the center of our solar system, directly enabled the discovery
+of Kepler’s laws of planetary motion. One of the great strengths of modern AI
+systems is their ability to digest vast quantities of data and uncover dominant,
+actionable patterns, making them well suited for discovering such coordinates.
+This has led to one of the most important tools for explainable AI: the autoen-
+coder (AE) [49–54]. Autoencoders operate by reconstructing input data while
+imposing an information bottleneck, typically through a low-dimensional latent
+space,  forcing  high-dimensional  data  to  be  distilled  into  a  small  number  of
+coordinates. In this sense, AEs may be viewed as a nonlinear generalization
+6
+
+of the singular value decomposition (SVD), which is itself a data-driven gen-
+eralization  of  the  Fourier  transform  [55].  Autoencoders  have  therefore  been
+widely used to improve explainability in scientific machine learning, for exam-
+ple to promote sparse models in SINDy [51, 56], or by identifying coordinates
+that  enable  even  more  stringent  assumptions,  such  as  strictly  linear  latent
+dynamics [50, 57–61]. Even when the network implementation is complex, the
+explicit identification of a low-dimensional latent space provides a meaning-
+ful and interpretable representation. Further, Cranmer et al. [62] introduced
+the notion of disentangled  sparsity  to derive symbolic expressions for each of
+the latent variables in terms of a sparse subset of the high-dimensional input
+variables.
+A  complementary  form  of  explainability  in  AI-enabled  scientific  discov-
+ery  arises  from  restricting  models  to  represent  specific  physical  functions  or
+mechanisms. We have already seen this in the example of turbulence closure
+modeling, where the focus is put on modeling a specific physical mechanism,
+such as the Reynolds stresses [25]. Regardless of the internal complexity of the
+model, if its purpose is tightly constrained to a well-defined physical concept,
+then explainability is embedded in the function that the model is designed to
+represent. This perspective has been particularly influential in computational
+chemistry  [19,  63],  for  example  through  the  use  of  free  energy  and  related
+concepts  to  impose  physical  meaning  on  deep  learning  models  [63].  Related
+examples include Lagrangian and Hamiltonian neural networks [64, 65], which
+leverage deep learning to represent fundamental physical functions with clear
+interpretations.  Incorporating  symmetries  into  learning  architectures  is  also
+used  to  improve  generalization  and  embed  deeply  intuitive  physical  princi-
+ples  into  otherwise  opaque  models  [26,  36,  66–69].  More  broadly,  scientific
+explainability has often been bootstrapped by identifying and naming recur-
+ring  functional  structures.  For  example,  the  Bessel  functions  are  defined  by
+recursion  relations  to  solve  classes  of  differential  equations  that  occur  fre-
+quently  in  science  and  engineering,  providing  a  compact  and  interpretable
+abstraction for otherwise complex behavior.
+Explainable AI for Optimization
+Optimization   problems   in   science   and   engineering   increasingly   rely   on
+machine-learning  (ML)  models  with  predictive  [70,  71]  and  control  [72,  73]
+capabilities  exceeding  those  of  traditional  approaches.  However,  exploiting
+these models for design or real-time control requires understanding why they
+make  certain  decisions  and  which  variables  or  regions  of  the  system  drive
+those outcomes. Explainable artificial intelligence (XAI) [3, 74] therefore plays
+a central role in obtaining this type of insight, enabling both improved per-
+formance and deeper physical understanding. Classical optimization methods
+typically  rely  on  gradient-based  sensitivity  analysis  [75]  or  adjoint  meth-
+ods  [76]  to  identify  influential  parameters.  In  contrast,  modern  ML  models
+(especially  deep  neural  networks)  require  explainability  techniques  adapted
+7
+
+··
+θ=−
+g
+L
+−δ
+·
+θ
+··
+θ=−
+g
+L
+−δ
+·
+θ
+··
+θ=−
+g
+L
+−δ
+·
+θ
+Figure 2: Autoencoders learn coordinates for parsimonious dynam-
+ics. Discovering an effective coordinate system and a parsimonious description
+for  mechanistic  behavior  is  a  goal  in  XAI  for  scientific  discovery.  In  this
+schematic, a video of a swinging pendulum is the input to the autoencoder,
+which parameterizes the kinematics with two latent variables,θ  and
+ ̇
+θ. It is
+then possible to learn parsimonious models of the dynamics in this latent space,
+for example using SINDy [51].
+to  high-dimensional  regression  and  classification  tasks.  The  SHapley  Addi-
+tive  exPlanation  (SHAP)  [77]  framework,  with  its  theoretical  foundation  in
+cooperative  game  theory,  has  become  a  cornerstone  of  post-hoc  attribution
+methods for complex models. Kernel SHAP [3] provides a flexible (although
+computationally  expensive)  approximation,  while  gradient-based  SHAP  [74]
+offers scalability by exploiting backpropagation. Other relevant XAI methods
+are  integrated  gradients  [9]  and  saliency  maps  [78].  In  the  context  of  engi-
+neering optimization, these methods reveal which input features most strongly
+influence the optimization objective, from aerodynamic performance to energy
+efficiency. They have been successfully applied across fluid mechanics [7, 79],
+heat  transfer  [80],  combustion  [81]  and  renewable-energy  applications  [82],
+among others. Such analyses clarify the physical mechanisms learned by the
+model and highlight potential strategies for improving designs and controlling
+systems beyond what the model itself proposes.
+A recurring challenge is that high-performing ML models may learn repre-
+sentations that are highly efficient for the machine, yet unintuitive for humans.
+For example, deep reinforcement learning [2, 83] or diffusion-based design mod-
+els [84] often solve a control or optimization task in latent spaces that compress
+the dynamics into low-dimensional manifolds. While such manifolds are com-
+putationally advantageous, they obscure the physical mechanisms underlying
+the solution. Here, explainability offers a mechanism for translating between
+the  internal  representation  of  the  machine  and  the  human-understandable
+physical space. Gradient-based SHAP [74] is particularly valuable because it
+can  be  computed  at  extremely  high  resolution,  scaling  to  hundreds  of  mil-
+lions  of  spatial  points  in  parallel.  This  makes  it  possible  to  identify  causal
+importance  in  the  physical  flow  domain  [7],  even  when  the  underlying  net-
+work operates in a latent space. Consequently, SHAP-based explanations can
+8
+
+“invert” the abstraction introduced by representation learning, mapping the
+compressed reasoning of the machine back into interpretable physical struc-
+tures, such as coherent vortical regions, thermal layers, reactive fronts or stress
+concentrations  [7,  79].  This  dual-space  interpretability  is  essential  in  engi-
+neering, where optimization outcomes must ultimately translate into physical
+actions: changes to geometry, actuation or boundary conditions. Connecting
+latent-space decision making with physical-space mechanisms enables domain
+experts to validate, generalize and build upon machine-generated solutions. An
+example of this is the usage of gradient SHAP to guide flow control based on
+deep reinforcement learning: essentially, SHAP determines the most important
+structures in a turbulent flow, and using them to guide the DRL reward it is
+possible to achieve a very effective flow-control strategy [85]. In fact, taking the
+example of drag reduction, it has been shown [85] that using drag minimiza-
+tion as the reward is less effective than minimizing the physical mechanisms
+responsible for the drag, as the latter tackles the root rather than the symp-
+tom.  This  principle  has  been  extended  to  other  optimization  problems  [86],
+with key implications in science [87] and engineering [88].
+Optimization  is  inherently  causal:  improving  a  design  requires  knowing
+which intervention causes what effect. Recent developments in causality and
+information theory [89], such as the SURD (synergistic, unique and redundant
+decomposition) framework [8], provide a richer decomposition of causal interac-
+tions. Note that computing SURD or related causal decompositions in physical
+space is prohibitively expensive for high-dimensional systems. To address this,
+causal  inference  is  often  performed  in  a  latent  space,  where  the  dynamics
+are encoded as multivariate time series. Autoencoders [90, 91],β-variational
+autoencoders  (β-VAEs)  [71,  92,  93]  or  other  manifold-learning  architectures
+naturally  produce  such  representations.  Within  these  manifolds,  SURD  can
+reveal the minimal causal structure governing the evolution of the system or
+the optimization objective. This causal structure then guides principled inter-
+vention strategies, for example identifying the specific latent directions that
+correspond to beneficial actuation paths, or the synergies between flow regions
+responsible for drag reduction. When combined with SHAP-based reconstruc-
+tions in physical space, this creates a powerful causal-attribution framework:
+causality  is  identified  in  the  latent  manifold,  then  translated  into  physical
+mechanisms [94] that can be exploited e.g. for control.
+Beyond attribution, gradient SHAP can act as a form of causal dimension-
+ality reduction. Instead of compressing the system into a latent space, SHAP
+can reweigh the physical points of the domain according to their importance
+for a given task [7]. This preserves interpretability and maintains direct corre-
+spondence with actuators, which naturally operate in physical coordinates. By
+pruning the domain to only the most important points one can build reduced-
+order models or controllers that focus exclusively on the dynamically relevant
+structures. This creates an alternative to latent-space modeling which is inter-
+pretable  and  physically  grounded.  Then,  the  SHAP-identified  features  may
+serve  as  a  compressed  but  physically  meaningful  basis  for  reconstruction  or
+9
+
+closed-loop control [85]. This physical-space dimensionality reduction is partic-
+ularly appealing for engineering systems where actuation is spatially localized:
+SHAP highlights precisely those regions where interventions are most effective,
+enabling  energy-efficient  and  robust  optimization  strategies.  Thus,  integrat-
+ing  explainability  into  optimization  closes  the  loop  between  discovery  and
+action: ML models propose an optimized solution or control policy, often iden-
+tified in a latent space. Causal inference identifies how the solution emerges,
+pinpointing the interactions that drive improvements. Gradient-based SHAP
+represents  these  interactions  in  the  physical  space,  producing  interpretable
+attribution fields. Engineers can use these insights to design or refine actuation
+mechanisms,  validate  the  reasoning  of  the  model  or  generalize  to  new  con-
+ditions. Then the system becomes safer, more transparent and more robust,
+particularly  when  optimization  interacts  with  complex  physics.  This  work-
+flow applies to shape optimization, turbulent-flow control, structures, thermal
+management, reactive systems and multi-physics applications. It preserves the
+strengths of ML-driven optimization (speed, flexibility and nonlinearity) while
+ensuring physical interpretability.
+Explainable  AI  is  emerging  both  as  a  diagnostic  tool  and  a  method  for
+optimization  and  physical  understanding.  A  possible  framework  for  this  is
+illustrated in Figure 3, exemplified by a fluid-mechanics problem: data from
+different  flow  cases  (wings,  cities...)  and  flow  conditions  (Reynolds  number,
+Mach  number,  flow  orientation...)  are  first  compressed  into  a  shared  latent
+space via aβ-VAEs [71] (which encodes the spatial dimensions) and a trans-
+former [95] (which perform the temporal predictions). Each flow condition is
+mapped into a slice of the latent space, and conditional latent diffusion [70, 84]
+is  used  to  learn  the  distribution  of  the  different  slices  of  the  latent  space,
+potentially generalizing to new (unseen) conditions (wind turbines, drones...)
+as long as a good paramterization across geometries is found. This foundation
+model  [96]  can  be  used  as  an  engine  for  discovery  by  an  agentic-AI  system
+based on large language models (LLMs) [97, 98]. Note that such foundation
+models have been proposed for discovery in chemistry [99] and LLMs are being
+used  for  automated  design  optimization  [100].  Such  a  system  may  use  one
+slice of the latent space to understand dynamic mechanisms for a particular
+flow configuration based on causal analysis [8], and decide the next conditions
+to explore by defining new parameters and generating new latent spaces that
+can be decoded into a physical space, producing new relevant phenomena in
+that  new  configuration.  SHAP  can  be  key  in  this  context,  since  it  can  con-
+nect regions of the physical space for certain system conditions with concrete
+latent representations. Thus, an agentic AI system which may reach scientific
+understanding for optimization in a latent space can be made interpretable in
+physical  space  through  SHAP,  which  will  enable  connecting  known  physical
+phenomena with the physics newly discovered in the latent space. In summary,
+foundation models combined with XAI can help to reduce the complexity of a
+problem, enabling a more efficient optimization.
+10
+
+Figure  3:  Possible  XAI-based  framework  for  discovery  and  opti-
+mization.  We  illustrate  this  framework  with  a  fluid-mechanics  problem.
+High-quality  data  from  a  range  of  geometries  and  flow  conditions  are  used
+to  train  a  foundation  model  [96],  which  can  basically  produce  flow  realiza-
+tions in new geometries/conditions. The instantaneous fields for the various
+geometries  are  expressed  on  a  common  reference  domain,  and  the  geome-
+try is defined based on a common parameterization, which is provided as an
+input to the encoder (potentially enabling generalizing to other geometries by
+properly choosing the parameters). The physical dimensions are encoded into
+disentangled latent variables viaβ-VAEs [71], and time is predicted by trans-
+formers [95], such that each flow case maps into a 2D slice of the latent space.
+Then,  each  new  flow  condition  is  encoded  into  a  new  slice  of  the  3D  latent
+space.  Conditional  latent  diffusion  [70]  is  used  to  produce  new  slices  in  the
+latent space for the various flow conditions, including unseen ones. When these
+get decoded, instantaneous realizations of those new conditions are obtained
+in physical space. Causal analysis [8] can be used to understand physical phe-
+nomena for a particular flow case in the latent space, and in this case SHAP
+can  connect  physical  regions  with  each  of  the  latent  variables  [7,  79],  thus
+providing physical understanding in an interpretable manner. An LLM-based
+agentic-AI system can be used to explore new phenomena by deciding which
+new flow conditions need to be investigated with the foundation model, thereby
+understanding the effect of various flow regimes, scaling laws and the impact
+of geometry. This will then be again mapped into physical space via SHAP,
+providing  a  complete  framework  for  autonomous  discovery  very  relevant  for
+optimization in engineering and science.
+11
+
+Explainable AI for Certification
+ML models are increasingly embedded into high-stakes scientific, engineering
+and social workflows, from climate prediction and natural-hazard early warning
+to  structural  health  monitoring,  aerospace  design,  offshore  energy  systems,
+autonomous robotics, healthcare, and finance. As these AI-augmented systems
+transition  from  research  prototypes  to  operational  decision  tools,  a  central
+question lies in how we certify that these models are trustworthy and safe for
+deployment. The response to this question has critical implications for liability:
+should  the  AI-augmented  system  fail  and  create  significant  damages  to  the
+affected entity, who should pay the price?
+Traditional validation pipelines involve extensive testing prior to adoption
+and  deployment.  For  instance,  an  aircraft  would  need  to  go  through  exten-
+sive ground-based testing of each component, and flight tests prior to entering
+into service. The on-board computers will also require extensive testing under
+various  operating  conditions  to  guarantee  that  fly-by-wire  is  safe  and  does
+not behave unexpectedly (failure in this realm can produce catastrophic con-
+sequences,  e.g.  Ref.  [101]).  Similarly,  a  medical  doctor  will  need  to  undergo
+extensive specialized training before being able to practice and take decisions
+on a patient’s well-being. When an aircraft fails or a medical doctor makes a
+wrong decision, the liability chain is relatively clear, albeit not always. This,
+because there are protocols in place to certify and audit what went wrong. In
+fact, many of these more traditional workflows tend to behave with “determin-
+istic causality”: a failure takes place and we can walk backwards to understand
+the steps that led to this failure. Obviously, this is not always the case: certain
+systems are inherently random (e.g., the financial markets). In these cases, a
+degree  of  failure  is  disclosed  a-priori  and  is  expected.  However,  in  engineer-
+ing and healthcare applications such tolerance to failure is vastly reduced, and
+there are mechanisms in place to prevent catastrophic outcomes (or at least
+understand why they eventually happened).
+If we are now deploying AI-augmented solutions to some of these failure-
+adverse fields, such as engineering and medicine, what are the guardrails (if
+any) that we want to have in place to certify a given ML solution, and audit
+it in case of failure?
+ML  systems  are  statistical  tools  with  a  certain  degree  of  randomness,
+whereby data distribution shifts and data points can cause them to fail, or at
+least not behave as expected. This could open a new frontier in scientific ML:
+the use of explainability as a pathway to formal certification and auditing. XAI
+provides a mechanism to assess whether the reasoning of a model is aligned
+with  known  physics,  engineering  constraints,  or  known  causal  mechanisms.
+Attribution tools such as saliency maps, and causal-discovery frameworks can
+reveal whether an AI system relies on physically meaningful features rather
+than spurious correlations. This is especially critical for rare but high-impact
+events, such as mechanical failures, or unstable aerodynamic regimes, where
+small precursors may carry disproportionate influence on safety. By interro-
+gating internal representations, XAI enables scientists and engineers to verify
+12
+
+that models use appropriate physical concepts, respect invariances, and behave
+consistently under perturbations. In this sense, explainability becomes an ana-
+logue to structural inspection: it clarifies why a model behaves as it does, not
+merely how well  it behaves on historical tests (i.e., its accuracy). If the model
+is able to satisfy known concepts, it is also more likely to generalize to unseen
+scenarios or observations because it might have learned the underlying mech-
+anisms leading to a given outcome, rather than a spurious input-output map.
+Generalizability is frequently tied to reduced ML-model “hallucinations”. This
+is the case for recent hybrid physics-AI models [102] and large foundation mod-
+els with physical constraints. Of course, one may argue that if we had a perfect
+model, we would not require such an understanding of its internal mechanisms
+for certification and auditing purposes, since the model would never fail. Yet,
+this is a rather utopian view of current state-of-the-art ML and more gener-
+ally of the engineering and scientific world. And it does raise other and more
+profound questions of human and AI co-existence [103].
+A certification-oriented XAI framework would integrate three complemen-
+tary pillars. First, physics-grounded explainability, whereby explanations are
+evaluated  directly  against  conservation  laws,  stability  properties,  domain-
+specific  concepts,  or  empirical  scaling  relations.  Second,  stress-testing  via
+interpretable diagnostics, where distribution shifts, out-of-domain behaviour,
+and extreme-event responses are analysed through explanation-based stability
+metrics. These diagnostics can reveal failure modes long before they appear in
+conventional performance scores. Third, explanation-driven uncertainty quan-
+tification, where inconsistencies in attribution patterns serve as indicators of
+epistemic  uncertainty.  When  these  elements  are  combined,  they  provide  an
+interpretable audit trail that regulators and domain experts can examine, anal-
+ogous  to  verification  and  validation  (V&V)  frameworks  used  in  engineering
+certification.
+Our  view  is  that  explainability  is  a  core  scientific  instrument  for  cer-
+tifying  and  auditing  AI  systems.  It  provides  transparency  about  internal
+mechanisms, facilitates the identification of unphysical behaviours, and guides
+model redesign toward more robust and stable architectures. By coupling XAI
+methodologies with physics-based constraints, hybrid modelling, and rigorous
+V&V principles, it becomes possible to envision a future where AI components
+in  climate  models,  structural-dynamics  solvers,  or  autonomous  engineering
+platforms can be certified with the same rigour as traditional numerical mod-
+els. In medicine, explainability can be used as an AI colleague that explains
+its decision to its human counterpart, while the human takes the final decision
+more confidently, and with a transparent auditing trail [104].
+Such a framework would accelerate the safe integration of AI across sci-
+ence and engineering, enabling regulators, researchers, and industry partners
+to move from “trust by performance” to “trust by understanding.” This tran-
+sition is essential for unlocking the full potential of AI-enabled discovery and
+ensuring that AI-driven predictions and decisions remain reliable, transparent,
+and scientifically grounded across the entire operational spectrum, especially
+13
+
+in safety-critical applications, where failure means significant liabilities to the
+parties affected [105].
+Figure  4: Possible  XAI-based  framework  for  certification.  a)  Shows
+a  certification  and  auditing  process  obtained  via  the  performance  of  the  AI
+system (i.e., “trust by performance”). This pathway to certification and audit-
+ing has critical issues, namely limited validity bounds, and understanding of
+failure modes, unknown biases, and limited liability attribution. b) Shows a
+certification  and  auditing  process  obtained  through  both  performance  and
+explainability  (i.e.,  “trust  by  understanding”),  that  addresses  some  of  the
+issues of “trust by performance”. Certification and auditing by performance
+and explainability allows for traceability and therefore auditing, and enables
+a better understanding of why a model may fail or not behave as expected,
+therefore giving the opportunity to address potential biases or unsafe behavior
+prior of it occurring.
+Discussion and Outlook
+This  Perspective  has  argued  that  explainable  artificial  intelligence  provides
+a unifying framework for learning from machine-learned representations that
+already  exceed  human  performance  in  specific  tasks.  Across  discovery,  opti-
+mization,  and  certification,  explainability  emerges  as  a  tool  that  enables
+humans to extract causal structure, generalize beyond observed data and estab-
+lish  trust  in  high-stakes  scientific  and  engineering  applications.  While  these
+14
+
+domains  differ  in  objectives,  acceptable  risk  and  modes  of  validation,  they
+share a common challenge: translating high-dimensional, machine-internal rep-
+resentations into forms of understanding that are meaningful and actionable
+for humans.
+A  first  fundamental  challenge  concerns  the  intuitiveness  of  explanations.
+Not all explanations that are mathematically faithful are accessible to human
+experts. Attribution maps, latent variables, or causal graphs may be correct
+yet fail to align with the domain concepts, scales, or abstractions used in sci-
+entific reasoning. This mismatch poses a practical limit for certification and
+adoption: if explanations cannot be interpreted by regulators, engineers, or sci-
+entists, they cannot serve as a basis for accountability or decision making [106].
+Intuitiveness, however, should not be confused with simplicity. This concept
+reflects whether explanations can be composed, contextualized, and related to
+known concepts. This places an important constraint on XAI research: expla-
+nations must be evaluated not only for faithfulness to the model, but also for
+their usability by humans in specific scientific and engineering contexts.
+A  second  unifying  theme  is  the  role  of  scientific  understanding.  Recent
+philosophical  and  methodological  work  has  emphasized  that  understanding
+is  achieved  when  a  theory  allows  reliable  reasoning  across  contexts  without
+complete computation [107]. In this sense, understanding is inseparable from
+abstraction:  once  the  key  mechanisms  are  identified,  humans  can  anticipate
+system behavior, design interventions, or reason without re-solving the com-
+plete  problem.  This  perspective  offers  a  powerful  lens  for  learning  from  the
+learners.  If  an  ML  model  has  internalized  abstractions  that  enable  strong
+generalization  or  efficient  control,  then  extracting  those  abstractions  allows
+humans to use part of the ML-based understanding. In other words, explain-
+able  AI  can  be  a  mechanism  for  transferring  abstraction  from  machines  to
+humans, and not simply justifying individual predictions.
+Causality sits at the center of such a transfer. Across all three domains,
+the key distinction is not whether a model performs well, but whether it has
+captured  relationships  that  are  stable  under  intervention.  In  discovery,  this
+determines whether the learned laws reflect generalizable physical mechanisms
+rather than dataset-specific correlations. In optimization, it governs whether
+the interventions improve the performance of the system robustly or merely
+exploit  narrow  regimes.  In  certification,  it  dictates  whether  failures  can  be
+anticipated, diagnosed and attributed. The growing integration of causal infer-
+ence with representation learning and attribution methods points towards a
+new methodological framework in which the latent representations are not only
+compressed but causally structured. This causal organization is essential for
+scalability: without it, interpretability methods will not be able to handle the
+dimensionality and complexity of modern foundation models.
+Another cross-cutting issue is the tension between performance and trans-
+parency.  Highly  expressive  models  often  rely  on  representations  that  are
+efficient for machines but unintuitive for humans. In this article we propose
+that the explanations should operate at the level of mechanisms, invariances,
+15
+
+and causal relations that matter for the task at hand. This perspective reframes
+explainability as a multi-level concept. A model may remain opaque internally
+while still yielding explanations that are sufficient for scientific insight, design
+decisions, or certification requirements. The appropriate level of explanation
+therefore depends on risk, context, and intended use, reinforcing the need for
+domain-specific standards rather than universal interpretability metrics.
+Looking forward, several research directions appear particularly promising.
+First, there is a need for validation frameworks for explanations that assess
+causal faithfulness, stability under perturbations and consistency across scales.
+Second, scalable methods for causal discovery in learned latent spaces must
+be  further  developed,  particularly  for  spatiotemporal  and  multi-physics  sys-
+tems.  Third,  human-AI  interaction  deserves  greater  attention:  explanations
+are not static artifacts but part of an iterative dialogue in which humans refine
+questions, constraints, and abstractions.
+Progress in one domain will continue to inform the others. Tools developed
+for  extracting  governing  equations  can  strengthen  certification  by  reveal-
+ing  non-physical  behavior;  optimization  studies  can  expose  the  limits  of
+explanation-based control; and certification requirements can constrain model
+design  in  ways  that  ultimately  improve  scientific  insight.  Learning  from  the
+learners is therefore not a unidirectional process but a feedback loop: machines
+learn  from  data,  humans  learn  from  machines,  and  both  co-evolve  towards
+models that are understandable, reliable, and aligned with human values. In
+this emerging paradigm, agentic-AI systems that combine foundation models
+with explainability and causal reasoning can yield a completely new framework
+for accelerated and autonomous scientific discovery and design.
+Acknowledgements
+SLB acknowledges support from the the Boeing Company and the National
+Science Foundation AI Institute in Dynamic Systems (grant number 2112085).
+References
+[1]  Jumper,  J.  et  al.    Highly  accurate  protein  structure  prediction  with
+alphafold.  Nature 596, 583–589 (2021) .
+[2]  Guastoni, L., Rabault, J., Schlatter, P., Azizpour, H. & Vinuesa, R. Deep
+reinforcement  learning  for  turbulent  drag  reduction  in  channel  flows.
+European Physical Journal E 46 (27), 27 (2023) .
+[3]  Lundberg, S. M. & Lee, S.-I.  A unified approach to interpreting model
+predictions.Advances  in  neural  information  processing  systems  30
+(2017) .
+[4]  Rudin, C.  Stop explaining black box machine learning models for high
+stakes decisions and use interpretable models instead.  Nature  Machine
+16
+
+Intelligence 1 (5), 206–215 (2019) .
+[5]  Camps-Valls, G. et al.  Discovering causal relations and equations from
+data.  Physics Reports 1044, 1–68 (2023) .
+[6]  Carloni,  G.,  Berti,  A.  &  Colantonio,  S.The  role  of  causality  in
+explainable artificial intelligence.  Preprint arXiv:2309.09901  (2023) .
+[7]  Cremades,  A.,  Hoyas,  S.  &  Vinuesa,  R.Classically  studied  coher-
+ent structures only paint a partial picture of wall-bounded turbulence.
+Nature Communications, To Appear  (2025) .
+[8]  Mart ́ınez-S ́anchez,  A.,  Arranz,  G.  &  Lozano-Dur ́an,  A.   Decomposing
+causality into its synergistic, unique, and redundant components. Nature
+Communications 15 (1), 9296 (2024) .
+[9]  Sundararajan, M., Taly, A. & Yan, Q.  Axiomatic attribution for deep
+networks.  Proceedings of the 34th International Conference on Machine
+Learning (ICML) 70, 3319–3328 (2017) .
+[10]  Wei,   J.   et   al.Xai4extremes:   An   interpretable   machine   learning
+framework for understanding extreme-weather precursors under climate
+change.  arXiv preprint arXiv:2503.08163  (2025) .
+[11]  Yang, L.  et  al.  Diffusion models: A comprehensive survey of methods
+and applications.  ACM Computing Surveys 56 (4), 1–39 (2023) .
+[12]  Ameisen, E.  et  al.  Circuit tracing: Revealing computational graphs in
+language models.  Transformer Circuits Thread  (2025) .
+[13]  Mengaldo, G. Explain the black box for the sake of science: the scientific
+method  in  the  era  of  generative  artificial  intelligence.   arXiv  preprint
+arXiv:2406.10557  (2024) .
+[14]  Turb ́e,  H.,  Bjelogrlic,  M.,  Lovis,  C.  &  Mengaldo,  G.    Evaluation  of
+post-hoc  interpretability  methods  in  time-series  classification.   Nature
+Machine Intelligence 5 (3), 250–260 (2023) .
+[15]  Wei, J., Turb ́e, H. & Mengaldo, G. Revisiting the robustness of post-hoc
+interpretability methods.  arXiv preprint arXiv:2407.19683  (2024) .
+[16]  Brunton,  S.  L.,  Proctor,  J.  L.  &  Kutz,  J.  N.   Discovering  governing
+equations  from  data  by  sparse  identification  of  nonlinear  dynamical
+systems.   Proceedings  of  the  National  Academy  of  Sciences  113  (15),
+3932–3937 (2016) .
+[17]  Cranmer, M.  Interpretable machine learning for science with pysr and
+symbolicregression. jl.  arXiv preprint arXiv:2305.01582  (2023) .
+17
+
+[18]  Vinuesa,  R.  et  al.Decoding  complexity:  how  machine  learning  is
+redefining scientific discovery.  Preprint arXiv:2405.04161  (2024) .
+[19]  No ́e, F., Tkatchenko, A., M ̈uller, K.-R. & Clementi, C. Machine learning
+for molecular simulation.  Annual review of physical chemistry 71, 361–
+390 (2020) .
+[20]  Baek, M. & Baker, D.  Deep learning and protein structure modeling.
+Nature methods 19 (1), 13–14 (2022) .
+[21]  Degrave, J.  et  al.  Magnetic control of tokamak plasmas through deep
+reinforcement learning.  Nature 602 (7897), 414–419 (2022) .
+[22]  Tamayo,  D.  et  al.   Predicting  the  long-term  stability  of  compact  mul-
+tiplanet  systems.Proceedings  of  the  National  Academy  of  Sciences
+117 (31), 18194–18205 (2020) .
+[23]  Parker, L. et al. Astroclip: a cross-modal foundation model for galaxies.
+Monthly Notices of the Royal Astronomical Society 531 (4), 4990–5011
+(2024) .
+[24]  Angeloudi,  E.  et  al.The  multimodal  universe:  enabling  large-scale
+machine learning with 100 tb of astronomical scientific data.  Advances
+in Neural Information Processing Systems 37, 57841–57913 (2024) .
+[25]  Ling, J., Kurzawski, A. & Templeton, J.  Reynolds averaged turbulence
+modelling using deep neural networks with embedded invariance. Journal
+of Fluid Mechanics 807, 155–166 (2016) .
+[26]  Loiseau, J.-C. & Brunton, S. L. Constrained sparse Galerkin regression.
+Journal of Fluid Mechanics 838, 42–67 (2018) .
+[27]  Fukami, K., Goto, S. & Taira, K.  Data-driven nonlinear turbulent flow
+scaling with buckingham pi variables.  Journal of Fluid Mechanics 984,
+R4 (2024) .
+[28]  Brunton, S. L., Zolman, N., Kutz, J. N. & Fasel, U.  Machine learning
+for sparse nonlinear modeling and control.   Annual  Review  of  Control,
+Robotics, and Autonomous Systems 8 (2025) .
+[29]  Bongard, J. & Lipson, H.  Automated reverse engineering of nonlinear
+dynamical  systems.   Proceedings  of  the  National  Academy  of  Sciences
+104 (24), 9943–9948 (2007) .
+[30]  Schmidt,  M.  &  Lipson,  H.Distilling  free-form  natural  laws  from
+experimental data.  Science 324 (5923), 81–85 (2009) .
+18
+
+[31]  Petersen,  B.  K.Deep  symbolic  regression:  Recovering  mathemat-
+ical   expressions   from   data   via   policy   gradients.arXiv   preprint
+arXiv:1912.04871  (2019) .
+[32]  Vaddireddy, H. & San, O. Equation discovery using fast function extrac-
+tion:  A  deterministic  symbolic  regression  approach.   Fluids  4  (2),  111
+(2019) .
+[33]  Udrescu, S.-M. & Tegmark, M.  Ai feynman: A physics-inspired method
+for symbolic regression.  Science advances 6 (16), eaay2631 (2020) .
+[34]  Zolman,  N.,  Fasel,  U.,  Kutz,  J.  N.  &  Brunton,  S.  L.SINDy-RL:
+Interpretable and efficient model-based reinforcement learning.  Nature
+Communications 16 (1) (2025) .
+[35]  Kaptanoglu, A. A., Callaham, J. L., Hansen, C. J., Aravkin, A. & Brun-
+ton, S. L. Promoting global stability in data-driven models of quadratic
+nonlinear dynamics.  Physical Review Fluids 6 (094401) (2021) .
+[36]  Otto, S. E., Zolman, N., Kutz, J. N. & Brunton, S. L.  A unified frame-
+work to enforce, discover, and promote symmetry in machine learning.
+Journal of Machine Learning Research 26 (248), 1–83 (2025) .
+[37]  Rudy, S. H., Brunton, S. L., Proctor, J. L. & Kutz, J. N.  Data-driven
+discovery of partial differential equations. Science Advances 3 (e1602614)
+(2017) .
+[38]  Schaeffer, H.  Learning partial differential equations via data discovery
+and sparse optimization.  Proc. R. Soc. A 473 (2197), 20160446 (2017) .
+[39]  Messenger,  D.  A.  &  Bortz,  D.  M.   Weak  sindy  for  partial  differential
+equations.  Journal of Computational Physics 110525 (2021) .
+[40]  Reinbold,  P.  A.,  Kageorge,  L.  M.,  Schatz,  M.  F.  &  Grigoriev,  R.  O.
+Robust learning from noisy, incomplete, high-dimensional experimental
+data via physically constrained symbolic regression. Nature communica-
+tions 12 (1), 1–8 (2021) .
+[41]  Fasel,  U.,  Kutz,  J.  N.,  Brunton,  B.  W.  &  Brunton,  S.  L.   Ensemble-
+sindy: Robust sparse model discovery in the low-data, high-noise limit,
+with  active  learning  and  control.   Proceedings  of  the  Royal  Society  A
+478 (2260), 20210904 (2022) .
+[42]  Beetham,  S.  &  Capecelatro,  J.   Formulating  turbulence  closures  using
+sparse regression with embedded form invariance. Physical Review Fluids
+5 (8), 084611 (2020) .
+19
+
+[43]  Beetham, S., Fox, R. O. & Capecelatro, J.  Sparse identification of mul-
+tiphase turbulence closures for coupled fluid–particle flows.  Journal  of
+Fluid Mechanics 914 (2021) .
+[44]  Schmelzer,  M.,  Dwight,  R.  P.  &  Cinnella,  P.Discovery  of  alge-
+braic  reynolds-stress  models  using  sparse  symbolic  regression.    Flow,
+Turbulence and Combustion 104 (2), 579–603 (2020) .
+[45]  Alves, E. P. & Fiuza, F. Data-driven discovery of reduced plasma physics
+models from fully-kinetic simulations.  arXiv preprint arXiv:2011.01927
+(2020) .
+[46]  Supekar, R.  et  al.  Learning hydrodynamic equations for active matter
+from particle simulations and experiments.  Proceedings of the National
+Academy of Sciences 120 (7), e2206994120 (2023) .
+[47]  Zanna,   L.   &   Bolton,   T.Data-driven   equation   discovery   of
+ocean   mesoscale   closures.Geophysical   Research   Letters  47   (17),
+e2020GL088376 (2020) .
+[48]  Long,  Z.,  Lu,  Y.  &  Dong,  B.   Pde-net  2.0:  Learning  pdes  from  data
+with a numeric-symbolic hybrid deep network. Journal of Computational
+Physics 399, 108925 (2019) .
+[49]  Kingma, D. P. & Welling, M.  Auto-encoding variational bayes.  arXiv
+preprint arXiv:1312.6114  (2013) .
+[50]  Lusch, B., Kutz, J. N. & Brunton, S. L. Deep learning for universal linear
+embeddings of nonlinear dynamics. Nature Communications 9 (1), 4950
+(2018) .
+[51]  Champion,  K.,  Lusch,  B.,  Kutz,  J.  N.  &  Brunton,  S.  L.   Data-driven
+discovery  of  coordinates  and  governing  equations.   Proceedings  of  the
+National Academy of Sciences 116 (45), 22445–22451 (2019) .
+[52]  Lee,  K.  &  Carlberg,  K.  T.   Model  reduction  of  dynamical  systems  on
+nonlinear manifolds using deep convolutional autoencoders.  Journal  of
+Computational Physics 404, 108973 (2020) .
+[53]  Conti,  P.,  Gobat,  G.,  Fresca,  S.,  Manzoni,  A.  &  Frangi,  A.   Reduced
+order modeling of parametrized systems through autoencoders and sindy
+approach:  continuation  of  periodic  solutions.Computer  Methods  in
+Applied Mechanics and Engineering 411, 116072 (2023) .
+[54]  Mounayer,  J.,  Rodriguez,  S.,  Ghnatios,  C.,  Farhat,  C.  &  Chinesta,
+F.  Rank reduction autoencoders–enhancing interpolation on nonlinear
+manifolds.  arXiv e-prints arXiv–2405 (2024) .
+20
+
+[55]  Brunton,  S.  L.  &  Kutz,  J.  N.Data-Driven  Science  and  Engineer-
+ing:   Machine   Learning,   Dynamical   Systems,   and   Control   2nd  edn
+(Cambridge University Press, 2022).
+[56]  Bakarji, J., Champion, K., Nathan Kutz, J. & Brunton, S. L.  Discov-
+ering  governing  equations  from  partial  measurements  with  deep  delay
+autoencoders.  Proceedings of the Royal Society A 479 (2276), 20230422
+(2023) .
+[57]  Takeishi,  N.,  Kawahara,  Y.  &  Yairi,  T.   Learning  koopman  invariant
+subspaces for dynamic mode decomposition (2017).
+[58]  Yeung, E., Kundu, S. & Hodas, N. Learning deep neural network repre-
+sentations for koopman operators of nonlinear dynamical systems. arXiv
+preprint arXiv:1708.06850  (2017) .
+[59]  Wehmeyer, C. & No ́e, F.  Time-lagged autoencoders: Deep learning of
+slow collective variables for molecular kinetics. The Journal of Chemical
+Physics 148 (241703), 1–9 (2018) .
+[60]  Mardt, A., Pasquali, L., Wu, H. & No ́e, F. VAMPnets: Deep learning of
+molecular kinetics.  Nature Communications 9 (5) (2018) .
+[61]  Otto, S. E. & Rowley, C. W.  Linearly-recurrent autoencoder networks
+for  learning  dynamics.   SIAM  Journal  on  Applied  Dynamical  Systems
+18 (1), 558–593 (2019) .
+[62]  Cranmer, M.  et  al.  Disentangled sparsity networks for explainable AI
+(2021).
+[63]  No ́e, F., Olsson, S., K ̈ohler, J. & Wu, H. Boltzmann generators: Sampling
+equilibrium  states  of  many-body  systems  with  deep  learning.   Science
+365 (6457), eaaw1147 (2019) .
+[64]  Greydanus, S., Dzamba, M. & Yosinski, J. Hamiltonian neural networks.
+Advances  in  Neural  Information  Processing  Systems  32,  15379–15389
+(2019) .
+[65]  Cranmer,  M.  et  al.Lagrangian  neural  networks.arXiv  preprint
+arXiv:2003.04630  (2020) .
+[66]  Miller, B. K., Geiger, M., Smidt, T. E. & No ́e, F. Relevance of rotation-
+ally equivariant convolutions for predicting molecular properties.  arXiv
+preprint arXiv:2008.08461  (2020) .
+[67]  Batzner,  S.  et  al.   E  (3)-equivariant  graph  neural  networks  for  data-
+efficient  and  accurate  interatomic  potentials.   Nature  communications
+21
+
+13 (1), 2453 (2022) .
+[68]  Brandstetter,  J.,  Berg,  R.  v.  d.,  Welling,  M.  &  Gupta,  J.  K.   Clifford
+neural layers for pde modeling.  arXiv preprint arXiv:2209.04934  (2022)
+.
+[69]  Brandstetter,  J.,  Welling,  M.  &  Worrall,  D.  E.   Lie  point  symmetry
+data augmentation for neural pde solvers.  International Conference on
+Machine Learning  2241–2256 (2022) .
+[70]  Du, P., Parikh, M. H., Fan, X., Liu, X. & Wang, J.  Conditional neural
+field  latent  diffusion  model  for  generating  spatiotemporal  turbulence.
+Nature  Communications  15  (10416)  (2024).   https://doi.org/10.1038/
+s41467-024-51031-5 .
+[71]  Solera-Rico, A.  et  al.β-Variational autoencoders and transformers for
+reduced-order modelling of fluid flows.  Nature Communications 15 (1),
+1361 (2024) .
+[72]  Mnih, V. et al. Human-level control through deep reinforcement learning.
+Nature 518 (7540), 529–533 (2015) .
+[73]  Lillicrap,  T.  P.  et  al.Continuous  control  with  deep  reinforcement
+learning.  arXiv preprint arXiv:1509.02971  (2015) .
+[74]  Erion,  G.,  Janizek,  J.  D.,  Sturmfels,  P.,  Lundberg,  S.  M.  &  Lee,  S.-I.
+Improving performance of deep learning models with axiomatic attribu-
+tion priors and expected gradients.  Nature  machine  intelligence 3 (7),
+620–631 (2021) .
+[75]  Martins, J. R. R. A. & Lambe, A. B. Multidisciplinary design optimiza-
+tion: A survey of architectures. AIAA Journal 51 (9), 2049–2075 (2013)
+.
+[76]  Jameson, A. Aerodynamic design via control theory. Journal of Scientific
+Computing 3 (3), 233–260 (1988) .
+[77]  Shapley, L. S. et al.  A value for n-person games (1953) .
+[78]  Simonyan, K., Vedaldi, A. & Zisserman, A.  Deep inside convolutional
+networks:  Visualising  image  classification  models  and  saliency  maps.
+Preprint arXiv:1312.6034  (2013) .
+[79]  Cremades, A. et  al.  Identifying regions of importance in wall-bounded
+turbulence through explainable deep learning.  Nature Communications
+15, 3864 (2024) .
+22
+
+[80]  Larra ̃naga,  A.,  Sandberg,  R.  D.,  Mart ́ınez,  J.  &  Porteiro,  J.   On  the
+machine learning-assisted identification of the fundamental parameters
+of nonstandard microfin arrays to assess their heat transfer performance.
+Engineering Applications of Artificial Intelligence 136, 108945 (2024) .
+[81]  Zhao, P.  et  al.  A machine learning and cfd modeling hybrid approach
+for predicting real-time heat transfer during cokemaking processes.  Fuel
+373, 132273 (2024) .
+[82]  Singh,  S.,  Suman,  S.,  Kumar,  M.  &  Mitra,  S.   Ann  model  for  predic-
+tion of thermo-hydraulic performance of a solar air heater with vertical
+cylindrical ribs.  Energy Reports 8, 585–592 (2022) .
+[83]  Verma, S., Novati, G. & Koumoutsakos, P. Efficient collective swimming
+by harnessing vortices through deep reinforcement learning.  Proceedings
+of  the  National  Academy  of  Sciences  of  the  United  States  of  America
+115 (23), 5849–5854 (2018) .
+[84]  Vishwasrao, A. et al.  Diff-sport: Diffusion-based sensor placement opti-
+mization and reconstruction of turbulent flows in urban environments.
+Preprint arXiv:2506.00214  (2025) .
+[85]  Beneitez,  M.,  Cremades,  A.,  Guastoni,  L.  &  Vinuesa,  R.Improv-
+ing  turbulence  control  through  explainable  deep  learning.Preprint
+arXiv:2504.02354 (under review in Nature Communications) (2025) .
+[86]  Heaton,  H.  &  Wu  Fung,  S.   Explainable  ai  via  learning  to  optimize.
+Scientific Reports 13, 10103 (2023) .
+[87]  Murray, B. et al.  Explainable AI for understanding decisions and data-
+driven optimization of the Choquet integral.  2018  IEEE  International
+Conference on Fuzzy Systems (FUZZ-IEEE) (2018) .
+[88]  Shen,  Y.,  Huang,  W.,  Wang,  Z.  &  Xu,  D.  F.An  automatic  visi-
+ble explainer of geometric knowledge for aeroshape design optimization
+based on SHAP. Aerospace Science and Technology 127, 107800 (2022) .
+[89]  Shannon, C. E.  A mathematical theory of communication.   Bell  Syst.
+Tech.  J  27  (3),  379–423  (1948).   https://doi.org/10.1002/j.1538-7305.
+1948.tb01338.x .
+[90]  Hinton, G. E. & Salakhutdinov, R. R.  Reducing the dimensionality of
+data with neural networks.  Science 313 (5786), 504–507 (2006) .
+[91]  Lusch, B., Kutz, J. N. & Brunton, S. L. Deep learning for universal linear
+embeddings of nonlinear dynamics.  Nat. Commun. 9 (1), 4950 (2018) .
+23
+
+[92]  Kingma, D. P. & Welling, M. Auto-encoding variational bayes.  preprint
+arXiv:1312.6114  (2013) .
+[93]  Higgins, I.  et  al.  beta-vae: Learning basic visual concepts with a con-
+strained  variational  framework.   International  Conference  on  Learning
+Representations (ICLR) (2017) .
+[94]  Arranz, G. & Lozano-Dur ́an, A. Informative and non-informative decom-
+position  of  turbulent  flow  fields.J.  Fluid  Mech.  1000,  A95  (2024)
+.
+[95]  Sanchis-Agudo, M. et al. Easy attention: A simple attention mechanism
+for temporal predictions with transformers. APL Computational Physics
+1 (1), 016104 (2025) .
+[96]  Bommasani,  R.  et  al.   On  the  opportunities  and  risks  of  foundation
+models.  Preprint arXiv:2108.07258  (2022) .
+[97]  Gottweis, J. et al. Towards an AI co-scientist. Preprint arXiv:2502.18864
+(2025) .
+[98]  Vinuesa, R., Manch ́on, P., Hoyas, S. & Garc ́ıa-Mart ́ınez, J.  Balancing
+ai and human insights in scientific discovery: Challenges and guidelines.
+The Innovation 7 (3), 101144 (2026) .
+[99]  Wadell,  A.  et  al.   Foundation  models  for  discovery  and  exploration  in
+chemical space.  Preprint arXiv:2510.18900  (2025) .
+[100]  Carreon,  A.,  Sharma,  V.  &  Raman,  V.Automated  design  opti-
+mization  via  strategic  search  with  large  language  models.Preprint
+arXiv:2511.22651  (2025) .
+[101]  Administration, F. A. Summary of the FAA’s Review of the Boeing 737
+MAX.  Tech. Rep. (2020).
+[102]  Wang, X. et al.  Condensnet: Enabling stable long-term climate simula-
+tions via hybrid deep learning models with adaptive physical constraints.
+npj Climate and Atmospheric Science (2025) .
+[103]  Bostrom,  N.Superintelligence:  Paths,  Dangers,  Strategies  (Oxford
+University Press, 2014).
+[104]  Wei, J., Verona, E., Bertolini, A. & Mengaldo, G. Explainability matters:
+The  effect  of  liability  rules  on  the  healthcare  sector.    arXiv  preprint
+arXiv:2509.17334  (2025) .
+[105]  Vinuesa, R. & Sirmacek, B.  Interpretable deep-learning models to help
+achieve the Sustainable Development Goals. Nature Machine Intelligence
+24
+
+3 (11), 926 (2021) .
+[106]  Selbst, A. D. & Barocas, S. The intuitive appeal of explainable machines.
+Fordham Law Review 87, 1085–1139 (2018) .
+[107]  Krenn, M. et al.  On scientific understanding with artificial intelligence.
+Nature Reviews Physics 4, 761–769 (2022) .
+25

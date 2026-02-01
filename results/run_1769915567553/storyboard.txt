@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 10,
+    "prompt": "A cheerful cartoon pigeon dressed in a tiny military beret holds a miniature magnifying glass to one eye, looking exceptionally proud. It stands on a simplified globe, surrounded by little cartoon buildings representing cities. Warm, early-morning light casts long shadows across the globe. Wide shot focusing on the globe and pigeon spy.   <source>"
+  },
+  {
+    "id": "2",
+    "startTime": 10,
+    "endTime": 20,
+    "prompt": "Three cartoon pigeons fly in a V-formation over a city skyline, each wearing a tiny leather aviator cap and goggles. Puffs of fluffy clouds drift by below. Bright midday sunlight highlights their wings. Wide aerial view tracking the pigeon squadron.   <source>"
+  },
+  {
+    "id": "3",
+    "startTime": 20,
+    "endTime": 30,
+    "prompt": "A determined-looking cartoon pigeon in a miniature U.S. Navy officer's uniform salutes at a military base. Planes and hangars are in the background. Harsh overhead lighting casts strong shadows on the ground. Close-up shot focusing on the saluting pigeon and the peaked cap.   <source>"
+  },
+  {
+    "id": "4",
+    "startTime": 30,
+    "endTime": 40,
+    "prompt": "A cartoon pigeon wearing a tiny pilot's helmet with a red star on it soars over a rugged landscape of mountains and valleys. A soft, late-afternoon light casts long shadows on the terrain. Mid-distance shot following the lone pigeon from a side angle.   <source>"
+  },
+  {
+    "id": "5",
+    "startTime": 40,
+    "endTime": 50,
+    "prompt": "Two cartoon pigeons, one with a tiny American flag pin and the other with a miniature hammer and sickle on their caps, hold hands and fly together. They are surrounded by a few fluffy, heart-shaped clouds. The setting sun paints the sky in soft pink and orange hues. Wide shot from below, capturing the united pigeons against the colorful sky.   <source>"
+  },
+  {
+    "id": "6",
+    "startTime": 50,
+    "endTime": 60,
+    "prompt": "A stern-looking cartoon pigeon in a general's uniform stands in front of a large map covered in red and blue pushpins. Modern-looking technology like tablets and screens lines the walls. Bright, clinical fluorescent lighting illuminates the scene. Close-up shot focusing on the map and the pigeon's determined expression.   <source>"
+  }
+]

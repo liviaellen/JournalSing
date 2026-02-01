@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 10,
+    "prompt": "A close-up of a pigeon examining two canvases in an art gallery, with animated, swirling art on one side and static abstract art on the other, while the pigeon tilts its head curiously at the moving art."
+  },
+  {
+    "id": "2",
+    "startTime": 10,
+    "endTime": 20,
+    "prompt": "A scientist holding up two beakers, one with static art and another with animated art, as pigeons watch intently from their cage, some looking excited and chirping softly."
+  },
+  {
+    "id": "3",
+    "startTime": 20,
+    "endTime": 30,
+    "prompt": "A slow-motion shot of a pigeon pecking at the button to view more dynamic art, with its head tilting to the side as it shows clear preference and satisfaction."
+  },
+  {
+    "id": "4",
+    "startTime": 30,
+    "endTime": 40,
+    "prompt": "A group of pigeons looking at each other with chirping sounds and focused eyes on the moving art, as the scientist notes their reactions enthusiastically in a lab notebook."
+  },
+  {
+    "id": "5",
+    "startTime": 40,
+    "endTime": 50,
+    "prompt": "A wide shot of the art gallery with pigeons gathered in front of the animated artwork, while the scientist adjusts experimental settings on a control panel behind them."
+  },
+  {
+    "id": "6",
+    "startTime": 50,
+    "endTime": 60,
+    "prompt": "An upbeat shot of a pigeon walking away from the static art, wings slightly raised in a gesture of indifference, symbolizing its preference for dynamic art."
+  }
+]

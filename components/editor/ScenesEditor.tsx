@@ -20,7 +20,24 @@ export function ScenesEditor() {
   const { toast } = useToast()
 
   const handleRegenerate = async () => {
-    if (!lyrics?.text || !videoDuration) return
+    if (!lyrics?.text) {
+      toast({
+        title: 'Missing Lyrics',
+        description: 'Please generate or enter lyrics first before creating scenes.',
+        variant: 'destructive',
+      })
+      return
+    }
+
+    if (!videoDuration) {
+      toast({
+        title: 'Missing Duration',
+        description: 'Please select a video duration.',
+        variant: 'destructive',
+      })
+      return
+    }
+
     setIsRegenerating(true)
     setIsGenerating(true)
     try {

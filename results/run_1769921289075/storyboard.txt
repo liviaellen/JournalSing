@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "startTime": 0,
+    "endTime": 10,
+    "prompt": "Cartoony tutorial style scene showing: Hello you @ai spinmaster! @Notype @Notype Ha-a-ai-buckled up. I'ma take you on a spaceship ride Whizzin' through science, on the sly Light of Led Run Dragon, Real-Time powers showcased Now we're gonna. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "2",
+    "startTime": 10,
+    "endTime": 20,
+    "prompt": "Cartoony tutorial style scene showing: A good story to tell. So, go on. Read on. I'll be here, Waiting for you To come back and tell me What you think. And maybe, By then, I'll have some new insights To share with you. But for now, That's . Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "3",
+    "startTime": 20,
+    "endTime": 30,
+    "prompt": "Cartoony tutorial style scene showing: Enjoy the story. And remember: Life is about the small moments. And those small moments Are what make it special. So don't forget to enjoy them. And maybe, Just maybe, They'll make you A little more e. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "4",
+    "startTime": 30,
+    "endTime": 40,
+    "prompt": "Cartoony tutorial style scene showing: So, go on. Read on. I'll be here, Waiting for you To come back and tell me What you think. And maybe, By then, I'll have some new insights To share with you. But for now, That's all I have to say. Enj. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "5",
+    "startTime": 40,
+    "endTime": 50,
+    "prompt": "Cartoony tutorial style scene showing: And remember: Life is about the small moments. And those small moments Are what make it special. So don't forget to enjoy them. And maybe, Just maybe, They'll make you A little more enlightened. Or.... Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  },
+  {
+    "id": "6",
+    "startTime": 50,
+    "endTime": 60,
+    "prompt": "Cartoony tutorial style scene showing: Read on. I'll be here, Waiting for you To come back and tell me What you think. And maybe, By then, I'll have some new insights To share with you. But for now, That's all I have to say. Enjoy the stor. Bright colors, friendly characters, simple background. Wide shot with good lighting."
+  }
+]
